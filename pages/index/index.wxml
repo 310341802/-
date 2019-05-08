@@ -1,0 +1,47 @@
+<view class='search'>
+  <input type='text' placeholder='输入课程名' catchtap="toSearch" disabled='true'></input>
+</view>
+<view class="home-swiper">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color='{{activeColor}}' indicator-color='{{indicatorColor}}' style="height:{{imgHeight}}px " bindchange="bindchange">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" style="width:{{imgWidth}}px;height:{{imgHeight}}px " />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class="recommend">
+  <view class="title">推荐课程</view>
+  <view class="row" catchtap="intro">
+    <view class="photo"><image src="../../img/my.png"></image></view>
+    <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
+    <view class="trend">></view>
+  </view>
+  <view class="row">
+    <view class="photo"><image src="../../img/course-s.png"></image></view>
+    <view class="desc"><text>统计与概率</text><text class="teacher">炸老师</text></view>
+    <view class="trend">></view>
+  </view>
+  <view class="row">
+    <view class="photo"><image src="../../img/modify.png"></image></view>
+    <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
+    <view class="trend">></view>
+  </view>
+  <view class="row" >
+    <view class="photo"><image src="../../img/home-s.png"></image></view>
+    <view class="desc"><text>统计与概率</text><text class="teacher">炸老师</text></view>
+    <view class="trend">></view>
+  </view>
+  <view class="row">
+    <view class="photo"><image src="../../img/set.png"></image></view>
+    <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
+    <view class="trend">></view>
+  </view>
+  <view class="row">
+    <view class="photo"><image src="../../img/my-s.png"></image></view>
+    <view class="desc"><text>统计与概率</text><text class="teacher">炸老师</text></view>
+    <view class="trend">></view>
+  </view>
+</view>
+<view class="add iconfont icon-zengjia" id="add" catchtap="toAdd">
+</view>

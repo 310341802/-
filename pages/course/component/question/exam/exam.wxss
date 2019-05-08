@@ -1,0 +1,58 @@
+page{
+  background: #efefef;
+  color: #666;
+  font-size: 28rpx;
+}
+.block{
+  background: white;
+}
+.block .title{
+  border-bottom: thin dashed #ddd;
+  padding:2% 5%;
+}
+.block .row-con{
+  margin: 0 5%;
+  padding: 5% 0;
+  border-bottom: thin dashed #efefef;
+}
+.block view.row:last-child .row-con{
+  border: 0;
+}
+.block .type{
+  font-weight: lighter;
+  margin-bottom: 15rpx;
+}
+.block .answer{
+  margin-top: 5%;
+}
+.block .ans{
+  display: block;
+  margin: 3%;
+}
+input{
+  margin-left: 3%;
+  border-bottom: thin solid #efefef;
+}
+.btn{
+  background: white;
+  padding: 5% 0;
+}
+button{
+  background: #24dd82;
+  color: white;
+  width: 90%;
+  margin: auto;
+  border: 0;
+  display: block;
+}
+button:active{
+  background: #178d52;
+  color: white;
+}
+.ans_sco{
+  padding-top: 5%;
+  font-weight: lighter;
+}
+.ans_sco .score{
+  float: right;
+}

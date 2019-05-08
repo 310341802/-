@@ -1,0 +1,23 @@
+<view class="head">
+  <view class="head-img"><image src="../../../img/swiper/s4.png"  style="width:{{imgWidth}}px;height:{{imgHeight}}px "></image></view>
+  <view class="head-intro">
+    <view class="head-con">
+      <view class="cname">计算机网络</view>
+      <view class="tname">炸老师</view>
+      <view class="join">报名</view>
+    </view>
+    <view class="head-time">
+      <view class="head-time1"><text>报名时间:</text>2019-01-01 00:00 至 2019-06-09 23:59</view>
+      <view class="head-time1"><text>开课时间:</text>2019-06-09 23:59 至 2020-01-01 00:00</view>
+      <view class="head-time3"><text>季度:</text>2019年秋季</view>
+    </view>
+  </view>
+</view>
+<view class="main">
+  <view class="main-img"><image src="../../../img/my.png"></image></view>
+  <view class="main-intro">
+    <view class="tname">炸老师</view>
+    <view class="tmail">邮箱:3103418**@qq.com</view>
+    <view class="tdesc">简介:惠州学院吹水系主任、712宿舍爆炸头</view>
+  </view>
+</view>

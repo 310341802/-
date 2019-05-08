@@ -1,0 +1,17 @@
+<view class="head">
+  <form>
+    <view class="row row1">
+      <label>课程名</label>
+      <input placeholder='点击此处输入'></input>
+    </view>
+    <view class="row row2">
+      <label>添加封面(1张)</label>
+      <button class="add-img" bindtap='uploadVideo'>+</button>
+    </view>
+    <view class="row row3">
+      <label>公开(面向全部用户)</label>
+       <switch bindchange="" />
+    </view>
+    <button form-type='submit' id="submit">创建</button>
+  </form>
+</view>

@@ -1,0 +1,4 @@
+<view class="head">
+  <input placeholder='请输入课程号'></input>
+  <button form-type='submit'>加入</button>
+</view>

@@ -1,0 +1,158 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.4.2",
+	"appid": "wxc81cca723c86cbb2",
+	"projectname": "%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 17,
+			"list": [
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "course",
+					"pathName": "pages/course/course",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "introduce",
+					"pathName": "pages/index/course-intro/course-intro",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mes",
+					"pathName": "pages/my/mes/mes",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "set",
+					"pathName": "pages/my/set/set",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "help",
+					"pathName": "pages/my/help/help",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "feedback",
+					"pathName": "pages/my/feedback/feedback",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "edit",
+					"pathName": "pages/my/edit/edit",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "search",
+					"pathName": "pages/index/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "create",
+					"pathName": "pages/create/create",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "join",
+					"pathName": "pages/join/join",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tabbar",
+					"pathName": "pages/tabbar/tabbar",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "activity",
+					"pathName": "pages/course/component/activity/activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "member",
+					"pathName": "pages/course/component/member/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/course/component/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "question",
+					"pathName": "pages/course/component/question/question",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "tabbar_t",
+					"pathName": "pages/tabbar_t/tabbar_t",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

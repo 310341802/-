@@ -1,0 +1,19 @@
+<view class="blocka">
+  <view class="heada">实验{{innerText}}</view>
+  <view class="row" wx:for="{{activity}}" catchtap='toExperiment'>
+    <view class="img">
+      <image src="/img/file/file.png"></image>
+    </view>
+    <view class="desc">
+      <view class="title">{{item.title}}</view>
+      <view class="time">{{item.time}}</view>
+      <view class="statement">{{item.statement}}
+        <text wx:if="{{item.statement == '已结束'}}" class="ascore">得分：{{item.score}}</text>
+        <text class="engagement engagement_t" wx:if="{{item.status == 1}}">{{item.engage}}</text>
+        <text class="engagement engagement_f" wx:if="{{item.status == 0}}">{{item.engage}}</text>
+      </view>
+
+    </view>
+  </view>
+</view>
+<view class="null" wx:if="{{activity.length == 0}}">空空如也</view>

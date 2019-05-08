@@ -1,0 +1,43 @@
+<view class="block">
+  <view class="title">2.1测试</view>
+  <view class="row" wx:for="{{test}}">
+    <view class="row-con">
+      <view class="type">[{{index+1}}.
+        <text wx:if="{{item.status == 0}}">单选题</text>
+        <text wx:if="{{item.status == 1}}">多选题</text>
+        <text wx:if="{{item.status == 2}}">填空题</text>]
+      </view>
+      <view class="desc">{{item.desc}}</view>
+      <view class="answer">
+        <view wx:if="{{item.status == 0}}">
+          <radio-group>
+            <radio class="ans">A.{{item.a}}</radio>
+            <radio class="ans">B.{{item.b}}</radio>
+            <radio class="ans">C.{{item.c}}</radio>
+            <radio class="ans">D.{{item.d}}</radio>
+          </radio-group>
+        </view>
+        <view wx:if="{{item.status == 1}}">
+          <checkbox-group>
+            <checkbox class="ans">A.{{item.a}}</checkbox>
+            <checkbox class="ans">B.{{item.b}}</checkbox>
+            <checkbox class="ans">C.{{item.c}}</checkbox>
+            <checkbox class="ans">D.{{item.d}}</checkbox>
+          </checkbox-group>
+        </view>
+        <view wx:if="{{item.status == 2}}">
+          <input placeholder='此处填写答案'></input>
+        </view>
+      </view>
+      <view class="ans_sco">
+        <text class="trueAns">答案：{{item.trueAns}}</text>
+        <text class="score">得分：{{item.score}}</text>
+      </view> 
+      
+    </view>
+  </view>
+
+</view>
+<view class="btn">
+<button>提交</button>
+</view>

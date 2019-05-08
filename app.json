@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/course/course",
+    "pages/index/course-intro/course-intro",
+    "pages/my/mes/mes",
+    "pages/my/help/help",
+    "pages/my/set/set",
+    "pages/my/feedback/feedback",
+    "pages/my/edit/edit",
+    "pages/index/search/search",
+    "pages/course/search/search",
+    "pages/create/create",
+    "pages/join/join",
+    "pages/course/component/question/question",
+    "pages/course/component/question/exam/exam",
+    "pages/course/component/activity/activity",
+    "pages/course/component/activity/experiment/experiment",
+    "pages/course/component/member/member",
+    "pages/course/component/detail/detail",
+    "pages/course/component/detail/teacher-intro/teacher-intro",
+    "pages/tabbar/tabbar",
+    "pages/course/component/member/member-intro/member-intro",
+
+    "pages/tabbar_t/tabbar_t",
+    "pages/course/component_t/homework/homework",
+    "pages/course/component_t/experiment/experiment",
+    "pages/course/component_t/member/member",
+    "pages/course/component_t/detail/detail"
+
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#efefef",
+    "backgroundColor": "#efefef"
+  },
+  "tabBar": {
+    "color": "#ddd",
+    "selectedColor": "#24dd82",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/home-s.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "iconPath": "img/course.png",
+        "selectedIconPath": "img/course-s.png",
+        "text": "课程"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/my-s.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

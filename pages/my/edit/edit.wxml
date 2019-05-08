@@ -1,0 +1,22 @@
+<view class="head">
+  <view class="title">设置个人信息<text style="color:#999">(*为必填项)</text></view>
+  <form>
+  <view class="row">
+    <label>姓名<text style="color:red">*</text></label>
+    <input></input>
+  </view>
+  <view class="row">
+    <label>学号/工号<text style="color:red">*</text></label>
+    <input></input>
+  </view>
+  <view class="row">
+    <label>邮箱<text style="color:red">*</text></label>
+    <input></input>
+  </view>
+  <view class="row">
+    <label>学校</label>
+    <input></input>
+  </view>
+  <button form-type='submit'>确定</button>
+  </form>
+</view>

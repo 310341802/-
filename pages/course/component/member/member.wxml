@@ -1,0 +1,16 @@
+<view class="blockm">
+  <view class="count">成员总数：{{member.length}}</view>
+  <view class="row" wx:for="{{member}}" catchtap='toTro'>
+    <view class="row-con">
+      <view class="img">
+        <image src="/img/my.png"></image>
+      </view>
+      <view class="desc">
+        <view class="name">{{item.name}}</view>
+        <view class="num">{{item.num}}</view>
+      </view>
+      <text class="sign">已签到 {{item.degree}} 次 <text>></text></text>
+    </view>
+  </view>
+</view>
+<view class="null" wx:if="{{member.length == 0}}">空空如也</view>
