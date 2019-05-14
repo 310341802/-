@@ -169,7 +169,7 @@ input-holder {
   display: flex;
   flex-direction: row;
   height: 86rpx;
-  border-top: 1px solid #dedede;
+  
   font-size: 34rpx;
   line-height: 86rpx;
 }
@@ -177,10 +177,16 @@ input-holder {
   width: 50%;
   color: #666;
   text-align: center;
-  border-right: 1px solid #dedede;
+
 }
 .btn-confirm {
   width: 50%;
   color: #24dd82;
   text-align: center;
+}
+.btn-confirm,
+.btn-cancel{
+  border: 0;
+ font-size: 34rpx;
+  border-radius: 0;
 }

@@ -29,7 +29,8 @@
     "pages/course/component_t/member/member",
     "pages/course/component_t/detail/detail",
     "pages/course/component_t/detail/teacher_edit/teacher_edit",
-    "pages/course/component_t/member/member-intro/member-intro"
+    "pages/course/component_t/member/member-intro/member-intro",
+    "pages/course/component_t/homework/hw_create/hw_create"
 
   ],
   "window": {

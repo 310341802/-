@@ -39,19 +39,21 @@
 
 <view class="add iconfont icon-zengjia" id="add" bindtap="showDialogBtn"></view>
 <!--弹窗-->
-<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<form bindsubmit="GetName">
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}">
   <view class="modal-title">新建作业</view>
   <view class="modal-content">
     <view class="modal-input">
-      <input placeholder-class="input-holder" type="text" bindinput="inputChange" class="input" value="{{date}}"></input>
+      <input placeholder-class="input-holder" type="text" bindinput="inputChange" class="input" value="{{date}}" name="hw_name"></input>
     </view>
   </view>
   <view class="modal-footer">
-    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    <button class="btn-cancel" bindtap="onCancel" data-status="cancel" >取消</button>
+    <button class="btn-confirm" bindtap="onConfirm" data-status="confirm" form-type='submit'>确定</button>
   </view>
 </view>
+</form>
 
 
 

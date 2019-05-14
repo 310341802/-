@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -150,6 +150,13 @@
 					"name": "tabbar_t",
 					"pathName": "pages/tabbar_t/tabbar_t",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 18,
+					"name": "hw_create",
+					"pathName": "pages/course/component_t/homework/hw_create/hw_create",
+					"query": "name=作业",
 					"scene": null
 				}
 			]

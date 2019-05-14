@@ -122,12 +122,16 @@ Component({
     /**
      * 对话框确认按钮点击事件
      */
-    onConfirm: function () {
+    GetName: function (e) {
+      var name = e.detail.value.hw_name//获取作业名
+
       this.hideModal();
       this.setData({
         hw_count: this.data.hw_count + 1
       })
-      console.log(this.data.hw_count)
+      wx.navigateTo({
+        url: '/pages/course/component_t/homework/hw_create/hw_create?name='+name,
+      })
     }
   },
   properitys: {
