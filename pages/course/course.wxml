@@ -25,7 +25,7 @@
 <view class="main">
 <view class="created">
     <view class="title">我创建的课程</view>
-    <view class="row">
+    <view class="row" catchtap='toMyCourse'>
       <view class="photo"><image src="../../img/my.png"></image></view>
       <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
       <view class="trend">></view>

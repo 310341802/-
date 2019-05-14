@@ -1,4 +1,4 @@
-// pages/course/course.js
+// pages/course/component_t/detail/teacher_edit/teacher_edit.js
 Page({
 
   /**
@@ -62,37 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  toSearch:function(){
-    wx.navigateTo({
-      url: 'search/search',
-    })
-  },
-  toAdd: function (e) {
-    wx.showActionSheet({
-      itemList: ["创建课程","加入课程"],
-      success: function (e) {
-        if (e.tapIndex == 0) {
-          wx.navigateTo({
-            url: '../create/create',
-          })
-        }
-        else if (e.tapIndex == 1) {
-          wx.navigateTo({
-            url: '../join/join',
-          })
-        }
-      }
-    })
-  },
-  toCourse: function (e){
-    wx.navigateTo({
-      url: '/pages/tabbar/tabbar',
-    })
-  },
-  toMyCourse: function(e) {
-    wx.navigateTo({
-      url: '/pages/tabbar_t/tabbar_t',
-    })
   }
 })

@@ -2,7 +2,7 @@ let app = getApp()
 
 Page({
   data: {
-    currentTab: 1,
+    currentTab: 0,
     innerText: "123",
     items: [
       {

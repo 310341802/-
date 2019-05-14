@@ -1,0 +1,15 @@
+<form>
+  <view class="img">
+    <image src="/img/my.png"></image>
+    <view>修改课程封面</view>
+  </view>
+  <view class="desc">
+    <view class="title">
+      <label>课程名称：<input placeholder='计算机网络'></input></label>
+    </view>
+    <view class="teacher">
+       <label>教师名称：<input placeholder='许伟杰'></input></label>
+    </view>
+  </view>
+  <button form-type="submit">保存修改</button>
+</form>

@@ -27,8 +27,9 @@
     "pages/course/component_t/homework/homework",
     "pages/course/component_t/experiment/experiment",
     "pages/course/component_t/member/member",
-    "pages/course/component_t/detail/detail"
-
+    "pages/course/component_t/detail/detail",
+    "pages/course/component_t/detail/teacher_edit/teacher_edit",
+    "pages/course/component_t/member/member-intro/member-intro"
 
   ],
   "window": {

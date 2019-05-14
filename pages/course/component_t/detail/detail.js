@@ -4,7 +4,8 @@ Component({
    * 页面的初始数据
    */
   data: {
-    courseId: 123456,
+    
+   
     intro: [
       {
         title: "课程简介",
@@ -55,6 +56,7 @@ Component({
     ]
   },
   methods: {
+    
     onLoad: function (options) {
 
     },
@@ -114,7 +116,7 @@ Component({
     },
     toTeacherInfo: function () {
       wx.navigateTo({
-        url: '/pages/course/component/detail/teacher-intro/teacher-intro',
+        url: '/pages/course/component_t/detail/teacher_edit/teacher_edit',
       })
     }
   },

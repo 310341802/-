@@ -24,6 +24,7 @@ page{
 .blockd .row  .img {
   width: 100rpx;
   height: 100rpx;
+  
 }
 .blockd .row  .img image{
   width: 100%;
@@ -39,6 +40,12 @@ page{
 .blockd .row .desc .teacher{
  margin-top: 15rpx;
 }
+.blockd .row .trend{
+  font-size: 120%;
+  color: #999;
+  margin-left: 50%;
+  margin-top: 25rpx;
+}
 .blockd .courseId-con{
   width: 90%;
   padding: 5% 0;
@@ -48,6 +55,13 @@ page{
 }
 .courseId:active{
   background: #efefef;
+}
+.blockd .public{
+  padding: 0% 5% 1%;
+
+}
+.blockd .public switch{
+  transform: scale(.8);
 }
 /*classify*/
 .blockd .row .row-con{
@@ -77,12 +91,29 @@ page{
   width: 600rpx;
   word-wrap: break-word;
 }
-button{
+button.submit{
+  color: white;
+  background: #24dd82;
+  font-size: 34rpx;
+  border-radius: 0;
+}
+button.submit:active{
+  background: #178d52;
+}
+button.end{
   color: red;
   font-size: 34rpx;
   background: white;
-  margin-bottom: 130rpx;
 }
 button:active{
   background: #efefef;
 }
+.btn_end{
+  margin: 50rpx 0 130rpx;
+} 
+.btn_end text{
+  display: block;
+  padding:1% 5%;
+  font-weight:lighter;
+}
+/**/
