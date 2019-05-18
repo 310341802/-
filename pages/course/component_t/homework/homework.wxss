@@ -39,21 +39,30 @@ page{
 .blockq .headq .unpub{
   color: #999;
 }
-
-.blockq .row:active{
+.unpublish,published{
+  position: relative;
+}
+.blockq .row{
+  position: relative;
+  background: white;
+}
+.blockq .row .row-con:active{
   background: #efefef;
+  
 }
 .blockq .row .row-con{
-  display: flex;
   position: relative;
-  padding: 4% 0;
-  margin: 0 5%;
+  background: white;
+  padding: 4% 5%;
+  width: 90%;
+  z-index: 5;
   border-bottom: thin solid #efefef;
 }
 .blockq .row:last-child .row-con{
   border-bottom:0;
 }
 .blockq .row .row-con .img{
+  display: inline-block;
   width: 75rpx;
   height: 75rpx;
   margin-right: 30rpx;
@@ -62,7 +71,17 @@ page{
   width: 100%;
   height: 100%;
 }
-.blockq .row .row-con .desc .statement{
+.blockq .row .row-con .desc .title{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 350rpx;
+}
+.blockq .row .row-con .desc{
+  display: inline-block;
+   vertical-align: top;
+}
+ .row .row-con .desc .statement{
+ 
   font-weight: lighter;
 }
 .null{
@@ -76,17 +95,21 @@ page{
   bottom: 25rpx;
 }
 .blockq .trend{
+   vertical-align: top;
+  display: inline-block;
   font-size: 120%;
   line-height: 70rpx; 
   color: #ddd;
-  margin-left: 55%;
+  position: absolute;
+  right: 5%;
 }
 .blockq .pub_btn{
+  display: inline-block;
   border-radius: 5rpx;
-  display: block;
+  vertical-align: top;
   background: #316eff;
   color: white;
-  margin-left: 45%;
+  margin-left: 15%;
   font-size: 28rpx;
   margin-top: 10rpx;
 }
@@ -110,6 +133,21 @@ page{
 }
 .add:active{
   background: #178d52;
+}
+.del{
+  display: inline-block;
+  vertical-align: top;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  position: absolute;
+  width: 170rpx;
+  height: 100%;
+  text-align: center;
+  line-height: 140rpx;
+  color: white;
+  background: rgb(255, 49, 49);
+
 }
 /*弹窗*/
 .modal-mask {
@@ -187,6 +225,6 @@ input-holder {
 .btn-confirm,
 .btn-cancel{
   border: 0;
- font-size: 34rpx;
+  font-size: 34rpx;
   border-radius: 0;
 }

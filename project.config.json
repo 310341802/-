@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -157,6 +157,13 @@
 					"name": "hw_create",
 					"pathName": "pages/course/component_t/homework/hw_create/hw_create",
 					"query": "name=作业",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "hw_show",
+					"pathName": "pages/course/component_t/homework/hw_show/hw_show",
+					"query": "name=2019-5-11",
 					"scene": null
 				}
 			]
