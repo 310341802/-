@@ -39,5 +39,8 @@ Page({
   },
   onLoad: function (option) {
 
+  },
+  onShow:function(e){
+    //console.log(123)
   }
 })

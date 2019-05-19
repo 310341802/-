@@ -1,7 +1,6 @@
 var util = require('../../../../../utils/util.js');
 Page({
   data: {
-
     name: "",//作业名字
     name1:"",//作业备用名字
     start_date: "",//开始日期
@@ -57,6 +56,9 @@ Page({
     ]
   },
   //保存临时修改
+  onShow:function(){
+    console.log(this.data.testList)
+  },
   saveQuestion:function(e){
     wx.showModal({
       title: '提示',
@@ -64,12 +66,9 @@ Page({
       success:function(res){
         if(res.confirm){
           //(待修改)将testList和name保存到服务器,页面自动返回上层
-          
           wx.showToast({
             title: '保存修改成功',
           })
-          //1.5秒后返回上个页面
-          //(待修改)需要使用上层页面的setdata
           setTimeout(function(){
             wx.navigateBack({
               
@@ -79,6 +78,12 @@ Page({
 
         }
       }
+    })
+  },
+  //创建下一题
+  createQuestion:function(e){
+    wx.navigateTo({
+      url: 'hw_addQues/hw_addQues?index='+this.data.testList.length,
     })
   },
   onLoad: function(options) {
@@ -104,12 +109,9 @@ Page({
         name: e.detail.value
       })
       wx.showToast({
-        title: '设置成功',
+        title: '请保存修改',
       })
-      //(待修改)需要将作业名name更新到上个页面
     }
-
-
   },
   edititem:function(e){
     var that = this
@@ -199,6 +201,7 @@ Page({
     this.hideModal();
     setTimeout(function(){
       //(待修改)需要将根据作业id将其状态设置为发布,添加到publishedList中,并且更新name(title)到数据库
+      //参数有name testList 开始日期start_date和截止日期date (this.data)
       wx.navigateBack({
         
       })

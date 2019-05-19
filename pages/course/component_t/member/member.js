@@ -19,6 +19,7 @@ Component({
     }
     ]
   },
+  
   methods: {
     onLoad: function (options) {
 

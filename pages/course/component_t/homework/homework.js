@@ -29,8 +29,15 @@ Component({
     ]
   },
  
-  /*生命周期 */
-  
+  /*组件所在页面的生命周期 */
+  pageLifetimes:{
+    show(){
+      console.log("显示页面")
+    },
+    hide(){
+      console.log("作业页面隐藏")
+    }
+  },
   methods: {
     push:function(e){
       console.log(1)
@@ -38,7 +45,7 @@ Component({
     showHW:function(e){
       var name = this.data.unpublishList[e.currentTarget.dataset.index].title
       wx.navigateTo({
-        url: '/pages/course/component_t/homework/hw_show/hw_show?name='+name,
+        url: '/pages/course/component_t/homework/hw_show/hw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.index,
       })
     }
     ,

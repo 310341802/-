@@ -2,7 +2,7 @@ page{
   background: #efefef;
   font-size: 28rpx;
   color: #666;
-  padding-bottom: 120rpx;
+  padding-bottom: 140rpx;
 }
 .block,.head{
   width: 90%;

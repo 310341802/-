@@ -32,7 +32,8 @@
     "pages/course/component_t/member/member-intro/member-intro",
     "pages/course/component_t/homework/hw_create/hw_create",
     "pages/course/component_t/homework/hw_show/hw_show",
-    "pages/course/component_t/homework/hw_edit/hw_edit"
+    "pages/course/component_t/homework/hw_edit/hw_edit",
+    "pages/course/component_t/homework/hw_show/hw_addQues/hw_addQues"
   ],
   "window": {
     "backgroundTextStyle": "light",
