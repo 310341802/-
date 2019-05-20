@@ -73,8 +73,12 @@ Page({
     })
   },
   bindPickerChange: function (e) {
+    var update = this.data.question
+    update.answer = [""]
     this.setData({
-      index: e.detail.value
+      index: e.detail.value*1,
+      question:update,
+      checked:''
     })
   },
   radioChange:function(e){
@@ -155,11 +159,15 @@ Page({
         testList: testList
       })
       var myindex = this.data.myindex*1 +1
+      var update = this.data.question
+      update.answer=[""]
       this.setData({
         myindex: myindex,
         checked:"",
-        form_info:""
+        form_info:"",
+        question:update
       })
+      console.log('提交后答案',this.data.question.answer)
       wx.showToast({
         title: '添加成功',
       })

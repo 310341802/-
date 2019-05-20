@@ -65,6 +65,7 @@ form button.submit{
   color: white;
   background: #24dd82;
   margin-bottom: 80rpx;
+  margin: 30rpx auto;
 }
 form button.submit:active{
   background: #178d52;

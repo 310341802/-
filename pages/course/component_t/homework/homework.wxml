@@ -5,7 +5,7 @@
   </view>
 
   <view class="publishedList" hidden="{{currentBlock==0?false:true}}">
-    <view class="row" wx:for="{{publishedList}}">
+    <view class="row" wx:for="{{publishedList}}" catchtap="showPHW" data-index="{{index}}">
       <view class="row-con">
         <view class="img">
           <image src="/img/file/link.png"></image>
@@ -31,7 +31,7 @@
             <text decode="{{true}}">&ensp;</text>
           </view>
         </view>
-        <button class="pub_btn" catchtap='push'>发布</button>
+        <button class="pub_btn">发布</button>
       </view>
       <view class="del" data-index="{{index}}" bindtap = "delItem">删除</view>
     </view>

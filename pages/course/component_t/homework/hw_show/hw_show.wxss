@@ -129,10 +129,11 @@ page{
   padding-top: 50rpx;
   font-size: 28rpx;
   color: #666;
+  line-height: .8;
   text-align: center;
 }
 .modal-content {
-  padding: 50rpx 32rpx;
+  padding: 40rpx 32rpx;
 }
 .modal-input {
   display: flex;

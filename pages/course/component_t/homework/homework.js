@@ -5,7 +5,7 @@ Component({
     date:"",
     hw_count:1,
     showModal: false,
-    currentBlock:1,
+    currentBlock:0,
     delBtnWidth: 90,//删除按钮宽度单位（rpx）
     publishedList: [
       {
@@ -32,16 +32,20 @@ Component({
   /*组件所在页面的生命周期 */
   pageLifetimes:{
     show(){
-      console.log("显示页面")
+     
     },
     hide(){
-      console.log("作业页面隐藏")
+     
     }
   },
   methods: {
-    push:function(e){
-      console.log(1)
-    },
+   showPHW:function(e){
+     var name = this.data.publishedList[e.currentTarget.dataset.index].title
+     
+     wx.navigateTo({
+       url: '/pages/course/component_t/homework/phw_show/phw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.index,
+     })
+   },
     showHW:function(e){
       var name = this.data.unpublishList[e.currentTarget.dataset.index].title
       wx.navigateTo({
@@ -137,12 +141,12 @@ Component({
       try {
         var res = wx.getSystemInfoSync().windowWidth;
         var scale = (750 / 2) / (w / 2);
-        // console.log(scale);
+      
         real = Math.floor(res / scale);
         return real;
       } catch (e) {
         return false;
-        // Do something when catch error
+       
       }
     },
     initEleWidth: function () {
@@ -175,7 +179,7 @@ Component({
               duration: 2000
             })
           } else if (res.cancel) {
-            console.log('用户点击取消')
+            
           }
         }
       })

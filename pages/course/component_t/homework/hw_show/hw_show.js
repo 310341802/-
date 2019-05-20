@@ -56,10 +56,8 @@ Page({
     ]
   },
   //保存临时修改
-  onShow:function(){
-    console.log(this.data.testList)
-  },
   saveQuestion:function(e){
+    console.log(this.data.testList)
     wx.showModal({
       title: '提示',
       content: '是否保存临时修改',

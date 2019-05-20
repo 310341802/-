@@ -1,5 +1,5 @@
 {
   "navigationBarTextStyle": "black",
   "backgroundColor": "#efefef",
-  "component": true
+  "navigationBarTitleText": "查看实验"
 }

@@ -36,7 +36,9 @@
 <form bindsubmit="GetName">
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <view class="modal-dialog" wx:if="{{showModal}}">
-    <view class="modal-title">请设置截止时间</view>
+    <view class="modal-title"><text>请设置截止时间
+\n(发放后无法再修改)</text>   </view>
+  
     <view class="modal-content">
       <view class="modal-input">
          <picker mode="date" value="{{date}}" start="{{start_date}}" end="2030-12-01" bindchange="bindDateChange" class="input" name="date"

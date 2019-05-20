@@ -26,6 +26,7 @@
     "pages/tabbar_t/tabbar_t",
     "pages/course/component_t/homework/homework",
     "pages/course/component_t/experiment/experiment",
+    "pages/course/component_t/experiment/ex_show/ex_show",
     "pages/course/component_t/member/member",
     "pages/course/component_t/detail/detail",
     "pages/course/component_t/detail/teacher_edit/teacher_edit",
@@ -33,7 +34,10 @@
     "pages/course/component_t/homework/hw_create/hw_create",
     "pages/course/component_t/homework/hw_show/hw_show",
     "pages/course/component_t/homework/hw_edit/hw_edit",
-    "pages/course/component_t/homework/hw_show/hw_addQues/hw_addQues"
+    "pages/course/component_t/homework/hw_show/hw_addQues/hw_addQues",
+    "pages/course/component_t/homework/phw_show/phw_show",
+    "pages/course/component_t/homework/phw_show/phw_overview/phw_overview",
+    "pages/course/component_t/homework/phw_show/phw_overview/look_ques/look_ques"
   ],
   "window": {
     "backgroundTextStyle": "light",
