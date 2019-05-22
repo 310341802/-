@@ -65,4 +65,5 @@
     </view>
     
   </view>
+  <view class="null" wx:if="{{stuT.length + stuF.length == 0}}">空空如也</view>
 </view>

@@ -149,7 +149,7 @@ page {
   padding-bottom: 25rpx;
   width: 80%;
   margin: auto;
- 
+  
   color: #666;
 }
 .title_end{
@@ -181,11 +181,16 @@ page {
 .row .desc {
   margin-left: 30rpx;
   line-height: 1.7;
+    width: 360rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .row .desc text:first-child {
   color: #666;
   font-weight: normal;
+
 }
 
 .row .trend {

@@ -2,6 +2,7 @@ page{
   background: #efefef;
   font-size: 28rpx;
   color: #666;
+  padding-bottom: 30rpx;
 }
 .block{
   background: white;

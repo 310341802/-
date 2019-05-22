@@ -24,7 +24,8 @@ Page({
     }]
     */ 
     //(待修改)获取该课程的学生及学生参与该项实验的status
-    stuT: [{
+    stuT: [
+      {
       userId: 2,
       userName: '谢国城',
       upTime: '2019-05-19',

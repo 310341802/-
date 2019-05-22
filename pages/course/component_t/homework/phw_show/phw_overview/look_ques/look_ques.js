@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    index:'',
     ans_id: [ //答案的ABCD
       "A", "B", "C", "D", "E", "F", "G"
     ],
@@ -38,7 +39,8 @@ Page({
   switchQues:function(e){
     var temp = this.data.quesList[e.currentTarget.dataset.set]
     this.setData({
-      ques:temp
+      ques:temp,
+      index: e.currentTarget.dataset.set
     })
   },
   /**

@@ -162,7 +162,10 @@ page{
 }
 .recommend .row .desc{
   margin-left: 30rpx;
-  
+  width: 360rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: 1.7;
 }
 .recommend .row .desc text:first-child{

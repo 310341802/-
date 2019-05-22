@@ -47,3 +47,9 @@ page{
   right: 0;
   bottom: 25rpx;
 }
+.t{
+  color: green;
+}
+.f{
+  color: red;
+}
