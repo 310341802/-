@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -164,6 +164,12 @@
 					"name": "hw_show",
 					"pathName": "pages/course/component_t/homework/hw_show/hw_show",
 					"query": "name=2019-5-11",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "exam",
+					"pathName": "pages/course/component/question/exam/exam",
 					"scene": null
 				}
 			]
