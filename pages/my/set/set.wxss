@@ -1,7 +1,8 @@
 /* pages/my/set/set.wxss */
 page{
   background: #efefef;
-  font-weight: lighter;
+  font-size: 28rpx;
+  color: #666;
 }
 .block{
   width: 90%;
@@ -11,7 +12,7 @@ page{
   margin: 20rpx auto;
   min-height: 100rpx;
   border-radius: 25rpx;
-  color: black;
+  color: #666;
 }
 .block .row{
   height: 100rpx;

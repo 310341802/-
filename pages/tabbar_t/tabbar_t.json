@@ -6,6 +6,6 @@
     "component_det": "/pages/course/component_t/detail/detail"
   },
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "计算机网络",
+  "navigationBarTitleText": "",
   "backgroundColor": "#efefef"
 }

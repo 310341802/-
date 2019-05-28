@@ -1,60 +1,43 @@
 <view class="head">
-<view class='search'>
-  <input type='text' placeholder='输入课程名' confirm-type='search' bindinput='inputBind' bindconfirm='query' catchtap='toSearch' disabled='true'></input>
-  <view class="add iconfont icon-zengjia" id="add" catchtap='toAdd'></view>
-</view>
+  <view class='search'>
+    <input type='text' placeholder='搜索你的课程' confirm-type='search' bindinput='inputBind' bindconfirm='query' catchtap='toSearch' disabled='true'></input>
+    <view class="add iconfont icon-zengjia" id="add" catchtap='toAdd'></view>
+  </view>
 
 </view>
 <view class="main">
   <view class="selected">
-    <view class="title">我参加的课程</view>
-    <view class="row" catchtap='toCourse'>
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络11111111111111111111111111111111111</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
+    <view class="title">我加入的课程</view>
+    <view wx:for="{{choosecourseList}}" class="item-container" >
+      <view class="row" catchtap='to' data-index='{{index}}'>
+        <view class="photo" >
+          <image src="{{item.courseImg}}" ></image>
+        </view>
+        <view class="desc" >
+          <text>{{item.coursename}}</text>
+          <text class="teacher">{{item.username}}<text wx:if="{{item.status==1}}" style="color:green;float:right;font-weight:lighter">进行中</text><text wx:if="{{item.status!=1}}" style="color:red;float:right;font-weight:lighter">已结束</text></text>
+        </view>
+        <view class="trend">></view>
+      </view>
     </view>
-    <view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view>
-    
+    <view class="null" wx:if="{{choosecourseList.length == 0}}">空空如也</view>
   </view>
-  
 </view>
 <view class="main">
-<view class="created">
+  <view class="created">
     <view class="title">我创建的课程</view>
-    <view class="row" catchtap='toMyCourse'>
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
+    <view wx:for="{{creatcourseList}}" class="item-container">
+      <view class="row" catchtap='toMyCourse' data-index='{{index}}'>
+        <view class="photo">
+          <image src="{{item.courseImg}}"></image>
+        </view>
+        <view class="desc">
+          <text>{{item.courseName}}</text>
+          <text class="teacher">{{item.username}}<text wx:if="{{item.status==1}}" style="color:green;float:right;font-weight:lighter">进行中</text><text wx:if="{{item.status!=1}}" style="color:red;float:right;font-weight:lighter">已结束</text></text>
+        </view>
+        <view class="trend">></view>
+      </view>
     </view>
-   <view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view><view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view><view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view>
-    <view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view><view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view><view class="row">
-      <view class="photo"><image src="../../img/my.png"></image></view>
-      <view class="desc"><text>计算机网络</text><text class="teacher">谢老师</text></view>
-      <view class="trend">></view>
-    </view>
+     <view class="null" wx:if="{{creatcourseList.length == 0}}">空空如也</view>
   </view>
 </view>

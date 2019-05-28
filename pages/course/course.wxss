@@ -69,7 +69,8 @@
 
 page {
   background: #efefef;
-  font-weight: lighter;
+  color: #666;
+  font-size: 28rpx;
   padding-bottom: 100rpx;
 }
 .search {
@@ -149,7 +150,7 @@ page {
   padding-bottom: 25rpx;
   width: 80%;
   margin: auto;
-  
+ 
   color: #666;
 }
 .title_end{
@@ -168,7 +169,7 @@ page {
 .row .photo {
 
   
-  border-radius: 10rpx;
+  
   width: 80rpx;
   height: 80rpx;
 }
@@ -176,21 +177,24 @@ page {
 .row .photo image {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }
 
 .row .desc {
   margin-left: 30rpx;
-  line-height: 1.7;
-    width: 360rpx;
+  
+  width: 360rpx;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  
+  height: 80rpx;
+  vertical-align: top;
 }
 
 .row .desc text:first-child {
   color: #666;
   font-weight: normal;
-
 }
 
 .row .trend {
@@ -207,7 +211,13 @@ page {
 
 .row .desc .teacher {
   display: block;
+  color: #999;
 }
 .ascore{
   padding-left: 60rpx;
+}
+.null{
+  border-top: thin solid #ddd;
+  padding: 25rpx 0;
+  text-align: center;
 }

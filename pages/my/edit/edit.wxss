@@ -1,6 +1,6 @@
 page{
   background: #efefef;
-  font-weight: lighter;
+ 
 }
 .head{
   background: white;
@@ -12,7 +12,7 @@ page{
   padding: 5%;
 }
 .head .title{
-  color: #666;
+  color: #999;
   padding-bottom: 20rpx;
   margin-bottom: 40rpx;
   border-bottom: thin solid #ddd;
@@ -27,6 +27,7 @@ page{
 .head form .row label{
   float: left;
   width: 170rpx;
+  color: #666;
 }
 .head form .row input{
   display: inline-block;
@@ -43,4 +44,10 @@ button[form-type="submit"]{
 }
 button[form-type="submit"]:active{
   background: #178d52;
+}
+.tip{
+  color: #666;
+  font-size: 28rpx;
+  font-weight: lighter;
+  margin: 0 5%;
 }

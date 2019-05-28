@@ -23,5 +23,5 @@
     <label>联系方式<text style="color:red">*</text></label>
     <input></input>
   </view>
-  <button id="submit">提交</button>
+  <button id="submit" catchtap='submitt'>提交</button>
 </form>

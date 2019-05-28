@@ -35,7 +35,7 @@ page{
 }
 .blockm .row .desc{
   margin-left: 30rpx;
-  font-weight: lighter;
+  color: #999;
   display: inline-block;
 }
 .blockm .row .desc .name{
@@ -51,7 +51,7 @@ page{
   color: #999;
 }
 .null{
-  font-weight: lighter;
+  color: #999;
   text-align: center;
   margin-top: -100rpx;
 }

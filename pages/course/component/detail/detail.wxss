@@ -44,7 +44,7 @@ page{
   padding: 5% 0;
   border-top: thin dashed #efefef;
   margin: auto;
-  font-weight: lighter;
+  color: #999;
 }
 .courseId:active{
   background: #efefef;

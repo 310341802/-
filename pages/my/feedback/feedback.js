@@ -14,7 +14,22 @@ Page({
   onLoad: function (options) {
 
   },
-
+  submitt:function(){
+    wx.showToast({
+      title: '提交成功',
+      
+      image: '',
+      duration: 1500,
+    
+      success: function(res) {
+        setTimeout(function(){
+          wx.navigateBack({
+            
+          })
+        },1500)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

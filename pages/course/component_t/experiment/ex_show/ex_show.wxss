@@ -32,7 +32,7 @@ page{
   
 }
 .block .head-head .desc .score,.score{
-  font-weight: lighter;
+  color: #999;
  
 }
 .exscore{
@@ -44,7 +44,7 @@ page{
   line-height: 1.5;
 }
 .block .head-main text{
-    font-weight: lighter;
+   color: #999;
 }
 /*Experiment desc*/
 .block .blockTitle{
@@ -53,7 +53,7 @@ page{
 }
 .block .experimentDesc{
   padding: 3% 5% ;
-  font-weight: lighter;
+  color: #999;
     word-wrap: break-word;
   word-break: break-all;
   overflow: hidden;
@@ -78,7 +78,7 @@ page{
   color: red;
 }
 .null{
-  font-weight: lighter;
+  color: #999;
   padding: 3% 5%;
 }
 .wordname{

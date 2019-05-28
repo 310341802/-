@@ -1,76 +1,59 @@
-
+const app = getApp()
 var util = require('../../../../utils/util.js');
 Component({
   data: {
-    date:"",
+    date: "",
+    txtStyle: "",
     hw_count:1,
     showModal: false,
     currentBlock:0,
+    totalPublishedTasks: 0,
+    totalUnpublishTasks: 0,
+    courseId: "424245",
     delBtnWidth: 90,//删除按钮宽度单位（rpx）
-    publishedList: [
-      {
-        title: "2-11测试",
-        createTime: "2019-02-11"
-      },
-      {
-        title: "2-11测试",
-        createTime: "2019-02-11"
-      }
-    ],
-    unpublishList:[
-      {
-        title: "2019-5-11",
-        createTime:""
-      },
-      {
-        title: "2019-5-12",
-        createTime:""
-      }
-    ]
+    publishedList: [],
+    unpublishList: [],
+    serverUrl: ""
   },
- 
-  /*组件所在页面的生命周期 */
   pageLifetimes:{
-    show(){
-     
+    show() {
+      this.setData({
+        currentBlock: 0
+      })
+      var me = this;
+      me.getAllPublishedTasks();
+      me.getAllUnpublishTasks();
+      console.log("显示主页面。。。");
     },
     hide(){
-     
+      console.log("主页面隐藏。。。");
     }
   },
-  methods: {
-   showPHW:function(e){
-     var name = this.data.publishedList[e.currentTarget.dataset.index].title
-     
-     wx.navigateTo({
-       url: '/pages/course/component_t/homework/phw_show/phw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.index,
-     })
-   },
-    showHW:function(e){
-      var name = this.data.unpublishList[e.currentTarget.dataset.index].title
-      wx.navigateTo({
-        url: '/pages/course/component_t/homework/hw_show/hw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.index,
-      })
-    }
-    ,
-    onLoad: function (options) {
 
+  attached()
+  {
+    //页面首次加载
+    /*
+    var me = this;
+    me.getAllPublishedTasks();
+    me.getAllUnpublishTasks();
+    console.log(me.data)
+    */
+  },
+  methods: {
+
+    //已提交作业详情
+    showPHW: function (e) {
+  
+      var name = this.data.publishedList[e.currentTarget.dataset.set].title
+      var courseTaskId = this.data.publishedList[e.currentTarget.dataset.set].courseTaskId
+      wx.navigateTo({
+        url: '/pages/course/component_t/homework/phw_show/phw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.set + "&courseTaskId=" + courseTaskId,
+      })
     },
-    changeFlag: function () {
-      if(this.data.currentBlock==0)
-      {
-        this.setData({
-          currentBlock: 1
-        })
-      }
-      else{
-        this.setData({
-          currentBlock: 0
-        })
-      }
-     
-      
-      
+
+    push: function (e) {
+      console.log(123)
     },
     touchS: function (e) {
       if (e.touches.length == 1) {
@@ -109,7 +92,7 @@ Component({
         this.setData({
           unpublishList: list
         });
-        
+
       }
     },
     touchE: function (e) {
@@ -125,7 +108,7 @@ Component({
         var index = e.target.dataset.index;
         var list = this.data.unpublishList;
 
-        if(index == null){
+        if (index == null) {
           return false
         }
 
@@ -141,12 +124,12 @@ Component({
       try {
         var res = wx.getSystemInfoSync().windowWidth;
         var scale = (750 / 2) / (w / 2);
-      
+        // console.log(scale);
         real = Math.floor(res / scale);
         return real;
       } catch (e) {
         return false;
-       
+        // Do something when catch error
       }
     },
     initEleWidth: function () {
@@ -155,80 +138,162 @@ Component({
         delBtnWidth: delBtnWidth
       });
     },
+
+    showHW: function (e) {
+      var courseId = app.getGlobalMyCourseInfo().courseId;
+      var name = this.data.unpublishList[e.currentTarget.dataset.index].title;
+      var courseTaskId = this.data.unpublishList[e.currentTarget.dataset.index].courseTaskId;
+      console.log(courseTaskId)
+      wx.navigateTo({
+        url: '/pages/course/component_t/homework/hw_show/hw_show?name=' + name + "&" + "index=" + e.currentTarget.dataset.index + "&courseTaskId=" + courseTaskId + "&courseId=" + courseId,
+      }) 
+    }
+    ,
+
     //点击删除按钮事件
     delItem: function (e) {
       //获取列表中要删除项的下标
-      var that = this
+      var that = this;
+      var unpublishList = this.data.unpublishList;
       var index = e.target.dataset.index;
-      var list = this.data.unpublishList;
+      var task = unpublishList[index];
+      console.log(task.courseTaskId);
       //移除列表中下标为index的项
       wx.showModal({
         title: '提示',
-        content: '确定要删除'+list[index].title+"吗？",
+        content: '确定要删除' + unpublishList[index].title + "吗？",
         success(res) {
           if (res.confirm) {
-            //删除
-            list.splice(index, 1);
-            //更新列表的状态
-            that.setData({
-              unpublishList: list
-            });
-            wx.showToast({
-              title: '删除成功',
-              icon: 'success',
-              duration: 2000
+            var serverUrl = app.serverUrl;
+            wx.request({
+              url: serverUrl + '/task/removeTask?courseTaskId=' + task.courseTaskId,
+              method: "POST",
+              success: function (res) {
+                wx.hideLoading();
+                wx.hideNavigationBarLoading();
+                console.log(res.data);
+
+                if (res.data.status == 200){
+                  //删除
+                  unpublishList.splice(index, 1);
+                  //更新列表的状态
+                  that.setData({
+                    unpublishList: unpublishList
+                  });
+                  wx.showToast({
+                    title: '删除成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                }else{
+                  wx.showToast({
+                    title: '删除失败',
+                    icon: "none"
+                  });
+                }
+          
+              },fail:function(){
+                wx.showToast({
+                  title: '网络请求超时!~~',
+                  icon: "none"
+                });
+              }
             })
+
           } else if (res.cancel) {
-            
+            console.log('用户点击取消')
           }
         }
       })
-      
+
     },
-    //测试临时数据
-    tempData: function () {
-      
-    },
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
+    //获取所有已发布作业信息
+    getAllPublishedTasks: function () {
+      var me = this;
+      var serverUrl = app.serverUrl;
+      var courseId = app.getGlobalMyCourseInfo().courseId;
+      wx.showLoading({
+        title: '请等待，加载中...',
+      });
+
+      wx.request({
+        url: serverUrl + '/task/getAllPublishedTasks?courseId=' + courseId ,
+        method: "POST",
+        success: function (res) {
+          wx.hideLoading();
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+
+          var publishedList = res.data.data;
+          var totalPublishedTasks = res.data.data.length;
+          me.setData({
+            publishedList: publishedList,
+            serverUrl: serverUrl,
+            totalPublishedTasks: totalPublishedTasks
+          });
+
+        }
+      })
     },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
+    //获取所有未发布作业信息
+    getAllUnpublishTasks: function () {
+      var me = this;
+      var serverUrl = app.serverUrl;
+      var courseId = app.getGlobalMyCourseInfo().courseId;
+      wx.showLoading({
+        title: '请等待，加载中...',
+      });
+
+      wx.request({
+        url: serverUrl + '/task/getAllUnpublishTasks?courseId=' + courseId ,
+        method: "POST",
+        success: function (res) {
+          wx.hideLoading();
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+
+          var unpublishList = res.data.data;
+          var totalUnpublishTasks = res.data.data.length;
+          me.setData({
+            unpublishList: unpublishList,
+            serverUrl: serverUrl,
+            totalUnpublishTasks: totalUnpublishTasks
+          });
+
+        }
+      })
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
+    toAdd:function(){
+      wx.navigateTo({
+        url: '/pages/course/component_t/homework/hw_create/hw_create',
+      })
     },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-    },
+    //是否发布
+    changeFlag: function () {
+      if (this.data.currentBlock == 0) {
+        this.setData({
+          currentBlock: 1
+        })
+      }
+      else {
+        this.setData({
+          currentBlock: 0
+        })
+      }
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
     },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-    },
-
     /**
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
+    },
+    toExams: function () {
+      wx.navigateTo({
+        url: '/pages/course/component/question/exam/exam',
+      })
     },
     showDialogBtn: function () {
       var time = util.formatTime(new Date());
@@ -240,27 +305,27 @@ Component({
       })
     },
     /**
-     * 弹出框蒙层截断touchmove事件
-     */
+    * 弹出框蒙层截断touchmove事件
+    */
     preventTouchMove: function () {
     },
     /**
-     * 隐藏模态对话框
-     */
+    * 隐藏模态对话框
+    */
     hideModal: function () {
       this.setData({
         showModal: false
       });
     },
     /**
-     * 对话框取消按钮点击事件
-     */
+    * 对话框取消按钮点击事件
+    */
     onCancel: function () {
       this.hideModal();
     },
     /**
-     * 对话框确认按钮点击事件
-     */
+    * 对话框确认按钮点击事件
+    */
     GetName: function (e) {
       var name = e.detail.value.hw_name//获取作业名
 
@@ -269,7 +334,7 @@ Component({
         hw_count: this.data.hw_count + 1
       })
       wx.navigateTo({
-        url: '/pages/course/component_t/homework/hw_create/hw_create?name='+name,
+        url: '/pages/course/component_t/homework/hw_create/hw_create?name=' + name,
       })
     }
   },

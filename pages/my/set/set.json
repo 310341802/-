@@ -1,7 +1,6 @@
 {
-  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#efefef",
   "navigationBarTitleText": "设置",
-  
-  "backgroundColor": "#efefef",
+  "navigationBarTextStyle": "black",
   "disableScroll": true
 }

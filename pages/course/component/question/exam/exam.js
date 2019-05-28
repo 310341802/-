@@ -2,9 +2,7 @@ let app = getApp()
 Page({
   data: {
 
-    // taskinfo: {},
-    // questionlist: [],
-    // test:[ ]
+
 
     //假设数据
     index: 0, //当前题目
@@ -19,85 +17,64 @@ Page({
     type: [ //用于显示
       "单选题", "多选题", "填空题"
     ], //阿展的数据
-    taskinfo: {
-      title: "2-1测试"
-    },
+    taskinfo: {},
+    questionlist: []
 
-    //(待修改)数据注入
-    questionlist: [{
-        questionType: 2,
-        questionID: '',
-        questionDesc: "如何呼叫好友开黑",
-        choicelist: ["维和咯", "来不来刺激一下", "L不L", "画archi咯"], //choicelist[i]
-        answer: ["ABC"], //answer[0]
-
-      },
-      {
-        questionType: 3,
-        questionID: '',
-        questionDesc: "华为最新手机型号是?",
-        choicelist: [],
-        answer: ["P30", "XS", "XR"], //answer[i]
-
-      },
-      {
-        questionType: 1,
-        questionID: '',
-        questionDesc: "以下哪个是中文",
-        choicelist: ["你好呀小老弟", "Hi,little brother", "Bonjour", "안녕하세요"],
-        answer: ["A"], //answer[0]
-
-      },
-
-    ]
   },
   do: function(e) {
-    // var taskin = this.data.taskinfo;
 
-    // var courseTaskId = taskin.courseTaskId;
-    // var userId = app.userInfo.userId;
-    // var formObject = e.detail.value;
-    // console.log(formObject);
-    // var fromstring = JSON.stringify(formObject);
-
-    // fromstring = fromstring.substring(0, fromstring.length - 1);
-    // fromstring = fromstring.substring(1);
-    // console.log(fromstring);
-
-
-
-
-    // wx.request({
-    //   url: 'http://localhost:8081/question/count?useranswer=' + fromstring + '&userId=' + userId + '&courseTaskId=' + courseTaskId,
-    //   method: "POST",
-    //   success: function(res) {
-    //     console.log(res.data);
-
-    //   }
-    // })
-    // wx.navigateBack();
   },
   onLoad: function(params) {
-    // var me = this;
-    // var info = JSON.parse(params.taskinfo);
-    // console.log(info);
-    // me.setData({
+    var me = this;
+    var info = JSON.parse(params.taskinfo);
+    me.setData({
 
-    //   taskinfo: info
-    // });
-    // var ids = info.questionListId;
-    // wx.request({
-    //   url: 'http://localhost:8081/question/queryquerstionlist?questionids=' + ids,
-    //   method: "POST",
-    //   success: function(res) {
-    //     var questionlist = res.data.data.data;
-    //     console.log(questionlist);
-    //     me.setData({
-    //       questionlist: questionlist
-    //     });
+      taskinfo: info
+    });
+    var ids = info.questionListId;
+    wx.request({
+      url: app.serverurl +'question/queryquerstionlist?questionids=' + ids,
+      method: "POST",
+      success: function(res) {
+        var quslist = res.data.data.data;
+        console.log(quslist);
+        var questionlist = [];
+        for (var index in quslist) {
+          var type = quslist[index].questionType;
+          if (type == 3) {
+            var question = {
 
-    //   }
-    // });
+              questionType: quslist[index].questionType,
+              questionID: quslist[index].questionId,
+              questionDesc: quslist[index].questionDesc,
+              choicelist: [],
+              answer: quslist[index].choicelist, //answer[i]
+              useranswer: [],
+              grade: -1
+            }
+          } else {
+            var question = {
+
+              questionType: quslist[index].questionType,
+              questionID: quslist[index].questionId,
+              questionDesc: quslist[index].questionDesc,
+              choicelist: quslist[index].choicelist,
+              answer: quslist[index].answer, //answer[i]
+              useranswer: [],
+              grade: -1
+            }
+          }
+
+
+          questionlist.push(question);
+
+        }
+
+        me.setData({
+          questionlist: questionlist
+        })
+      }
+    });
 
 
     //根据前端页面假设，设置作业名为导航条名
@@ -109,7 +86,7 @@ Page({
     var that = this.data.questionlist
     for (var i = 0; i < this.data.questionlist.length; i++) {
       that[i].grade = -1,
-      that[i].useranswer = []
+        that[i].useranswer = []
     }
     this.setData({
       questionlist: that
@@ -167,6 +144,7 @@ Page({
     var type = this.data.questionlist[this.data.index].questionType
     var that = this.data.questionlist
     if (type == 1) {
+      console.log(that);
       that[this.data.index].useranswer[0] = e.detail.value.single
       if (that[this.data.index].useranswer[0] == that[this.data.index].answer[0]) {
         that[this.data.index].grade = (100 / that.length).toPrecision(3)
@@ -177,17 +155,18 @@ Page({
     } else if (type == 2) {
       var t = e.detail.value.multi
       t = t.sort()
-
+      console.log(that);
       that[this.data.index].useranswer[0] = ''
       for (var i = 0; i < t.length; i++) {
         that[this.data.index].useranswer[0] += t[i]
       }
-      if (that[this.data.index].useranswer[0] == that[this.data.index].answer[0]) {
+      if (that[this.data.index].useranswer[0] == that[this.data.index].answer) {
         that[this.data.index].grade = (100 / that.length).toPrecision(3)
       } else {
         that[this.data.index].grade = 0
       }
     } else if (type == 3) {
+      console.log(that);
       var length = this.data.questionlist[this.data.index].answer.length
       for (var i = 0; i < length; i++) {
         that[this.data.index].useranswer[i] = ''
@@ -244,7 +223,7 @@ Page({
               })
 
 
-              //console.log('题目', that.data.questionlist)
+              console.log('题目', that.data.questionlist)
               //加工函数
               var myans = ''
               var temp = ''
@@ -269,15 +248,38 @@ Page({
 
             }
             //(待修改)数据提交后跳转分数查看页面
-            console.log('总分', that.data.sum)
+            console.log('总分', that.data.sum);
             console.log(myans)
+
+
+            var taskin = that.data.taskinfo;
+
+            var courseTaskId = taskin.courseTaskId;
+            var userinfo = wx.getStorageSync("userInfo");
+            var userId =userinfo.userId;
+            var sums = that.data.sum;
+            var useranswer = myans;
+
+
+
+            wx.request({
+              url: app.serverurl +'question/insertusertask?useranswer=' + myans + '&sum=' + sums + '&userId=' + userId + '&courseTaskId=' + courseTaskId,
+              method: "POST",
+              success: function(res) {
+                console.log(res.data);
+
+              }
+
+            })
+
             wx.showToast({
               title: '提交成功',
             })
             setTimeout(function() {
-              wx.navigateBack({
 
-              })
+              // wx.navigateTo({
+                // url: '/pages/course/component/question/phw_overview/phw_overview?taskinfo=' + taskin,
+              wx.navigateBack({ })
             }, 1000)
           }
         })

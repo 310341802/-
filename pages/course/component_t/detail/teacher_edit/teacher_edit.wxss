@@ -37,10 +37,9 @@ page{
   padding: 15rpx 0;
 }
 button[form-type="submit"]{
-  border-radius: 0;
+
   color: white;
   background: #24dd82;
-  font-size: 34rpx;
   font-weight: normal;
 }
 button[form-type="submit"]:active{

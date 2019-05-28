@@ -17,7 +17,7 @@ Page({
       "单选题", "多选题", "填空题"
     ],
     ques:[],//显示的题目
-    quesList:[]//所有题目
+    quesList:[]//所有题目 
   },
 
   /**
@@ -28,7 +28,9 @@ Page({
       title: options.navTitle,
     })
     //待修改,使用base64进行解析
-    var list = JSON.parse(options.list)
+    var modeEncode = decodeURIComponent(options.list)
+    var list = JSON.parse(modeEncode)
+    console.log('modeEncode', list)
     this.setData({
       quesList:list,
       index:options.index,

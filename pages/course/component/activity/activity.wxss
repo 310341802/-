@@ -35,8 +35,19 @@ page{
 .blocka .row:last-child .desc{
   border-bottom: 0;
 }
-.blocka .engagement{
-  float: right;
+.blocka .row .desc .statement{
+  display: flex;
+  justify-content: space-between;
+}
+.blocka .row .desc .title{
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+}
+.blocka .engagement,.ascore,.text{
+  display: inlin-block;
+  vertical-align: top;
+
 }
 .blocka .engagement_t{
   color: green;
@@ -47,13 +58,10 @@ page{
 .time,
 .statement,
 .engagement{
-  font-weight: lighter;
+  color: #999;
 }
 .null{
   font-weight: lighter;
   text-align: center;
   margin-top: -100rpx;
-}
-.ascore{
-  padding-left:350rpx;
 }

@@ -1,84 +1,51 @@
-
+const app = getApp()
 Component({
   data: {
-    member: [{
-        name: "许伟杰",
-        num: "1614080902436",
-        degree: 0
-      },
-      {
-        name: "谢国城",
-        num: "1614080902441",
-        degree: 0
-
-      },
-      {
-        name: "肖展洲",
-        num: "1614080902415",
-        degree: 0
-      }
-    ]
+    memberinfo: []
   },
+
+
   methods: {
-    onLoad: function(options) {
 
-    },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function() {
 
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
-    toTro: function() {
+    toTro: function(e) {
+      var me = this;
+      var index = e.currentTarget.dataset.index;
+      var info = me.data.memberlist[index];
+      
+      var memberinfo = JSON.stringify(info);
+      memberinfo=encodeURIComponent(memberinfo);
+      console.log("userInfo:" + memberinfo);
       wx.navigateTo({
-        url: '/pages/course/component/member/member-intro/member-intro',
+        url: '/pages/course/component/member/member-intro/member-intro?memberinfo='+ memberinfo,
       })
     }
   },
-  properity:{
+  properties: {
+    courseInfo: {
+      type: JSON
+    }
+  },
 
-  }
+
+  attached: function(e) {
+    var me = this;
+    var courseId = app.courseId;;
+    console.log("id:"+courseId);
+    wx.request({
+      url: app.serverurl +'course/queryallstudentbycourseid?courseId=' + courseId,
+      method: "POST",
+      success: function(res) {
+        console.log(res.data);
+        var memberlist = res.data.data.data;
+        console.log(memberlist);
+        me.setData({
+          memberlist: memberlist
+        });
+
+      }
+    })
+    
+  },
 })

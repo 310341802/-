@@ -1,8 +1,7 @@
 page{
+   background: #efefef;
   font-size: 28rpx;
-  background: #efefef;
-  color: black;
-  font-weight: lighter;
+  color: #666;
 }
 .row{
   width: 90%;

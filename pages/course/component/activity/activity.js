@@ -1,42 +1,50 @@
 // pages/course/component/activity/activity.js 
+
+var time = require('../../../../utils/util.js');
+const app = getApp()
 Component({
 
   /**
    * 页面的初始数据
    */
   data: {
-    activity: [{
-        title: "实验一:制作双绞线",
-        statement: "已结束",
-        time: "03.11 18:53 发布",
-        engage: "已提交",
-        status: 1,
-        score: 83
-      },
-      {
-        title: "实验二:VLAN虚拟局域网划分",
-        statement: "进行中",
-        time: "03.25 16:50 发布",
-        engage: "未提交",
-        status: 0
-      }
-      ,
-      {
-        title: "实验三:横穿局域网",
-        statement: "已结束",
-        time: "03.28 16:50 发布",
-        engage: "未提交",
-        status: 0,
-        score: 0
-      }
-    ]
+    experimentinfolist: [],
+    activity: []
   },
+  attached: function(e) {
+   
+    console.log("activity");
+    var info = app.courseInfo;
+
+    var userInfo = wx.getStorageSync("userInfo");
+    var userId = userInfo.userId;
+    var courseId = info.courseId;
+    var me = this;
+
+    wx.request({
+      url: app.serverurl +'courseExperiment/queryExperimentbycourseidanduserid?userId=' + userId + '&courseId=' + courseId,
+      method: "POST",
+ success: function(res) {
+        var experimentinfolist = res.data.data.data;
+        console.log(experimentinfolist);
+
+        
+        me.setData({
+          activity: experimentinfolist
+        });
+ 
+  
+      }
+    })
+
+  },
+
+
   methods: {
-    onLoad: function(options) {
+    onLoad: function(e) {
       wx.setNavigationBarTitle({
         title: '计算机网络',
       })
-
     },
 
     /**
@@ -87,17 +95,23 @@ Component({
     onShareAppMessage: function() {
 
     },
-    toExperiment: function() {
+    toExperiment: function(e) {
+
+      var me = this;
+      var inedx = e.currentTarget.dataset.index;
+      console.log(inedx);
+      var experimentlist = this.data.activity;
+      console.log(experimentlist[inedx]);
+      var experimentInfo = JSON.stringify(experimentlist[inedx]);
       wx.navigateTo({
-        url: '/pages/course/component/activity/experiment/experiment',
+        url: '/pages/course/component/activity/experiment/experiment?experimentInfo=' + experimentInfo
       })
     }
   },
-  properties:{
+  properties: {
     /*这里拿来设置参数,小老弟 */
-    innerText: {
-      type: String,
-      value: 'default value',
+    courseInfo: {
+      type: JSON
     }
   }
 })

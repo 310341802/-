@@ -48,19 +48,21 @@ Page({
           question_id: 1,
           question_type: 0, 
           question_desc: "问题描述",
-          choice: [
+          choicess: [
             "选项1", "选项2", "选项3"
           ],
-          answer: ["A"] //answer[0]
+          answerss: ["A"], //answers[0]
+          answers
      * }
      * ]
      */
     question:{
-      question_id: "",
-      question_type: "",
-      question_desc: "",
-      choice: [],
-      answer: [""] //answer[0]
+      questionId: "",
+      questionType: "",
+      questionDesc: "",
+      choices: [],
+      answers: [""], //answers[0],
+      answer:''
     }
   },
 
@@ -74,32 +76,33 @@ Page({
   },
   bindPickerChange: function (e) {
     var update = this.data.question
-    update.answer = [""]
+    update.answers = [""]
     this.setData({
-      index: e.detail.value*1,
-      question:update,
-      checked:''
+      index: e.detail.value,
+      question: update,
+      checked: ''
     })
+    
   },
   radioChange:function(e){
     var edit = this.data.question
-    edit.answer[0] = e.detail.value
+    edit.answers[0] = e.detail.value
     this.setData({
       question: edit
     })
   },
   checkboxChange:function(e){
     var edit = this.data.question
-    // edit.answer[0] = e.detail.value.sort()
+    // edit.answers[0] = e.detail.value.sort()
     // this.setData({
     //   question: edit
     // })
-    edit.answer[0]=""
+    edit.answers[0]=""
     var val = e.detail.value.sort()
     for(var i =0;i<e.detail.value.length;i++){
-      edit.answer[0] += val[i]
+      edit.answers[0] += val[i]
     }
-    edit.answer[0] = edit.answer[0]
+    edit.answers[0] = edit.answers[0]
     this.setData({
       question: edit
     })
@@ -108,6 +111,7 @@ Page({
   GetSingle:function(e){
     var that = this
     if(e.detail.target.dataset.set=="0"){
+ 
       if (e.detail.value.textarea == "") {
         wx.showToast({
           title: '问题描述不可为空',
@@ -116,12 +120,14 @@ Page({
         return false
       }
       var temp = that.data.question
-      temp.question_desc = e.detail.value.textarea
-      temp.question_type = this.data.index
+      temp.questionDesc = e.detail.value.textarea
+      temp.questionType = this.data.index*1 + 1
+      
       that.setData({
         question: temp
       })
-      if (this.data.question.answer[0] == "") {
+
+      if (this.data.question.answers[0] == "") {
         wx.showToast({
           title: '请选择正确答案',
           icon: "none"
@@ -129,7 +135,7 @@ Page({
         return false
       }
       var temp = this.data.question
-      temp.choice = [""]
+      temp.choices = [""]
       var length = 0
       if (this.data.index == 0)
         length = this.data.radioArray.length
@@ -144,7 +150,7 @@ Page({
           return false
         }
         else {
-          temp.choice[i] = e.detail.value[i]
+          temp.choices[i] = e.detail.value[i]
         }
       }
       this.setData({
@@ -158,16 +164,17 @@ Page({
       pre.setData({
         testList: testList
       })
+      
       var myindex = this.data.myindex*1 +1
       var update = this.data.question
-      update.answer=[""]
+      update.answers = [""]
       this.setData({
         myindex: myindex,
+        question:update,
         checked:"",
         form_info:"",
-        question:update
+        testList:{}
       })
-      console.log('提交后答案',this.data.question.answer)
       wx.showToast({
         title: '添加成功',
       })
@@ -180,19 +187,19 @@ Page({
         return false
       }
       var temp = that.data.question
-      temp.question_desc = e.detail.value.textarea
-      temp.question_type = this.data.index
+      temp.questionDesc = e.detail.value.textarea
+      temp.questionType = this.data.index*1 +1
       that.setData({
         question: temp
       })
-      if (this.data.question.answer[0] == "") {
+      if (this.data.question.answers[0] == "") {
         wx.navigateBack({
 
         })
         return false
       }
       var temp = this.data.question
-      temp.choice = [""]
+      temp.choices = [""]
       var length = 0
       if (this.data.index == 0)
         length = this.data.radioArray.length
@@ -206,7 +213,7 @@ Page({
           return false
         }
         else {
-          temp.choice[i] = e.detail.value[i]
+          temp.choices[i] = e.detail.value[i]
         }
       }
       this.setData({
@@ -242,14 +249,14 @@ Page({
         return false
       }
       var temp = that.data.question
-      temp.question_desc = e.detail.value.textarea
-      temp.question_type = this.data.index
+      temp.questionDesc = e.detail.value.textarea
+      temp.questionType = this.data.index*1 +1
       that.setData({
         question: temp
       })
 
       var temp = this.data.question
-      temp.answer = [""]
+      temp.answers = [""]
       var length = this.data.blankArray.length     
       for (var i = 0; i < length; i++) {
         if (e.detail.value[i] == "") {
@@ -260,7 +267,7 @@ Page({
           return false
         }
         else {
-          temp.answer[i] = e.detail.value[i]
+          temp.answers[i] = e.detail.value[i]
         }
       }
       this.setData({
@@ -294,14 +301,14 @@ Page({
         return false
       }
       var temp = that.data.question
-      temp.question_desc = e.detail.value.textarea
-      temp.question_type = this.data.index
+      temp.questionDesc = e.detail.value.textarea
+      temp.questionType = this.data.index*1 +1
       that.setData({
         question: temp
       })
 
       var temp = this.data.question
-      temp.answer = [""]
+      temp.answers = [""]
       var length = this.data.blankArray.length
       for (var i = 0; i < length; i++) {
         if (e.detail.value[i] == "") {
@@ -311,7 +318,7 @@ Page({
           return false
         }
         else {
-          temp.answer[i] = e.detail.value[i]
+          temp.answers[i] = e.detail.value[i]
         }
       }
       this.setData({
@@ -342,12 +349,12 @@ Page({
    * 删除和添加事件
    */
   additem: function (e) {
-    if (e.currentTarget.id == 0) {
+    if (e.currentTarget.id == 1) {
       var that = this.data.radioArray
-    } else if (e.currentTarget.id == 1) {
+    } else if (e.currentTarget.id == 2) {
       var that = this.data.checkboxArray
     }
-    else if (e.currentTarget.id == 2) {
+    else if (e.currentTarget.id == 3) {
       var that = this.data.blankArray
     }
     else {
@@ -370,17 +377,17 @@ Page({
     else {
       var temp = that
       temp.push({})
-      if (e.currentTarget.id == 0) {
+      if (e.currentTarget.id == 1) {
         this.setData({
           radioArray: temp
         })
       }
-      else if (e.currentTarget.id == 1) {
+      else if (e.currentTarget.id == 2) {
         this.setData({
           checkboxArray: temp
         })
       }
-      else if (e.currentTarget.id == 2) {
+      else if (e.currentTarget.id == 3) {
         this.setData({
           blankArray: temp
         })
@@ -389,11 +396,11 @@ Page({
 
   },
   delitem: function (e) {
-    if (e.currentTarget.id == 0) {
+    if (e.currentTarget.id == 1) {
       var that = this.data.radioArray
-    } else if (e.currentTarget.id == 1) {
-      var that = this.data.checkboxArray
     } else if (e.currentTarget.id == 2) {
+      var that = this.data.checkboxArray
+    } else if (e.currentTarget.id == 3) {
       var that = this.data.blankArray
     }
     else {
@@ -424,10 +431,10 @@ Page({
     else {
       var temp = that
       temp.pop({})
-      if (e.currentTarget.id == 0) {
-        if (this.data.question.answer[0] == this.data.ans_id[that.length]){
+      if (e.currentTarget.id == 1) {
+        if (this.data.question.answers[0] == this.data.ans_id[that.length]){
           var edit = this.data.question
-          edit.answer[0]=""
+          edit.answers[0]=""
           this.setData({
             question:edit
           })
@@ -436,10 +443,10 @@ Page({
           radioArray: temp
         })
       }
-      else if (e.currentTarget.id == 1) {
-        if (this.data.question.answer[0].charAt(this.data.question.answer[0].length - 1) == this.data.ans_id[that.length]) {
+      else if (e.currentTarget.id == 2) {
+        if (this.data.question.answers[0].charAt(this.data.question.answers[0].length - 1) == this.data.ans_id[that.length]) {
           var edit = this.data.question
-          edit.answer[0] = edit.answer[0].substr(0, edit.answer[0].length - 1);  
+          edit.answers[0] = edit.answers[0].substr(0, edit.answers[0].length - 1);  
           this.setData({
             question: edit
           })
@@ -448,7 +455,7 @@ Page({
           checkboxArray: temp,
         })
       }
-      else if (e.currentTarget.id == 2) {
+      else if (e.currentTarget.id == 3) {
         this.setData({
           blankArray: temp
         })

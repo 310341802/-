@@ -33,7 +33,7 @@ page{
   margin: -7% -8% 80rpx;
 }
 .block .main view{
-  color:#444;
-  font-weight: lighter;
+  color:#666;
+
   
 }

@@ -5,18 +5,18 @@
 </view>
 <view class="block" wx:for="{{testList}}" wx:for-index="index">
   <view class="row" >
-    <view class="title">{{index+1}}. {{type[item.question_type]}}</view>
+    <view class="title">{{index+1}}. {{type[item.questionType-1]}}</view>
     <view class="block-con">
-      <view class="desc">{{item.question_desc}}</view>
-      <view class="cho" wx:if="{{item.question_type!=2}}">
-        <text wx:for="{{item.choice}}" wx:for-index="idx" >
+      <view class="desc">{{item.questionDesc}}</view>
+      <view class="cho" wx:if="{{item.questionType!=3}}">
+        <text wx:for="{{item.choices}}" wx:for-index="idx" >
           {{ans_id[idx]}} {{item}}
         </text>
       </view>
-      <view class="ans" wx:if="{{item.question_type!=2}}">
-        <text>答案：{{item.answer[0]}}</text>    
+      <view class="ans" wx:if="{{item.questionType!=3}}">
+        <text>答案：{{item.answers[0]}}</text>    
       </view>
-      <view class="ans"  wx:if="{{testList[index].question_type==2}}" wx:for="{{item.answer}}" wx:for-index="idx1">
+      <view class="ans"  wx:if="{{testList[index].questionType==3}}" wx:for="{{item.answers}}" wx:for-index="idx1">
         <text >{{blank_id[idx1]}}：{{item}}</text>
       </view>
     </view>

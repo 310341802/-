@@ -1,12 +1,16 @@
+const app = getApp()
 // pages/course/component_t/experiment/ex_show/ex_show.js
 Page({
 
   /**
-   * 页面的初始数据
+   * 页面的初始数据 
    */
 
   data: {
     type: [""],//文件格式
+    experimentInfo:"",
+    urllist:[],
+    success:false,
     //(待修改)从上个实验中获取实验详情，涉及到json的转换
     exList: "",//实验
     /*
@@ -25,34 +29,68 @@ Page({
     */ 
     //(待修改)获取该课程的学生及学生参与该项实验的status
     stuT: [
-      {
-      userId: 2,
-      userName: '谢国城',
-      upTime: '2019-05-19',
-      status: 1
-    },
-      {
-        userId: 4,
-        userName: '蒸铃声',
-        upTime: '2019-05-20',
-        status: 1
-      }
+    //   {
+    //   userId: 2,
+    //   userName: '谢国城',
+    //   upTime: '2019-05-19',
+    //   status: 1
+    // },
+    //   {
+    //     userId: 4,
+    //     userName: '蒸铃声',
+    //     upTime: '2019-05-20',
+    //     status: 1
+    //   }
     ],
-    stuF: [{
-      userId: 1,
-      userName: '许伟杰',
-      upTime: '',
-      status: 0
-    },
-      {
-        userId: 3,
-        userName: '肖展洲',
-        upTime: '',
-        status: 0
-      },
+    stuF: [
+    //   {
+    //   userId: 1,
+    //   userName: '许伟杰',
+    //   upTime: '',
+    //   status: 0
+    // },
+    //   {
+    //     userId: 3,
+    //     userName: '肖展洲',
+    //     upTime: '',
+    //     status: 0
+    //   },
     ]
   },
 
+  open: function (e) {
+    var me = this;
+    var arrindex = e.currentTarget.dataset.index;
+    var url = this.data.urllist[arrindex].url;
+    var fileType = this.data.urllist[arrindex].type;
+    if (fileType=="docx"){
+      fileType = "doc"
+    } else if (fileType == "pptx"){
+      fileType = "ppt"
+    }
+    console.log(fileType)
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        var filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          fileType: fileType,
+          success: function (res) {
+            console.log('打开文档成功')
+            console.log(filePath)
+          },
+          fail:function(){
+            wx.showToast({
+              title: '格式有误，无法打开...',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -61,18 +99,64 @@ Page({
     this.setData({
       exList: exList
     })
-    var type = this.data.type
 
-    for (var i = 0; i < exList.fileName.length; i++) {
-      var substr = exList.fileName[i].split(".")
-      switch (substr[substr.length - 1]) {
+    var me = this;
+    var experimentInfo = me.data.exList;
+    me.setData({
+      experimentInfo: experimentInfo
+    });
+    var url = experimentInfo.courUrls;
+    url = decodeURIComponent(url);
+    var arr = url.split(",");
+
+    for (var ar in arr) {
+      var wangzhi = "http://pr2t5kesu.bkt.clouddn.com/"
+      console.log(arr[ar]);
+      //截取文件名 a=信息科学技术学院学生通讯录.xls
+      //var a = arr[ar].substring(wangzhi.length, arr[ar].length);
+      var shuzu = arr[ar].split('/');
+      var a = shuzu[shuzu.length-1];
+      //截取格式 type=xls 
+      var typearr = a.split(".");
+      var type = typearr[typearr.length - 1];
+      //console.log(type);
+      var documentdetail = {
+        type: type,
+        documentname: a,
+        url: arr[ar]
+      }
+      if (me.data.urllist == null) {
+        me.setData({
+          urllist: documentdetail
+        })
+      } else {
+        var newurllist = me.data.urllist.concat(documentdetail)
+        me.setData({
+          urllist: newurllist
+        })
+      }
+    }
+    console.log('urllist', me.data.urllist)
+
+    var type = this.data.type
+    var urllist = me.data.urllist;
+
+    for (var i = 0; i < urllist.length; i++) {
+      //var substr = exList.fileName[i].split(".")
+      switch (urllist[i].type) {
+        case "docx":
+          type[i] = "word.png";
+          this.setData({
+            type: type
+          });
+          break;
         case "doc":
           type[i] = "word.png";
           this.setData({
             type: type
           });
           break;
-        case "ppt":
+        case "pptx":
           type[i] = "point.png";
           this.setData({
             type: type
@@ -104,59 +188,50 @@ Page({
           break;
       }
     }
+    me.getAllCourseList();
   },
-  toStu:function(e){
-    wx.navigateTo({
-      //(待修改)传值进入学生详情页面
-      url: '../../member/member-intro/member-intro',
+
+  //获取所有课程信息
+  getAllCourseList: function () {
+    var me = this;
+    var serverUrl = app.serverUrl;
+    console.log('me.data.exList', me.data.exList)
+    wx.showLoading({
+      title: '请等待，加载中...',
+    });
+
+    wx.request({
+      url: serverUrl + '/experiment/getAllStudents?courseExperimentId=' + me.data.exList.courExperimentId,
+      method: "POST",
+      success: function (res) {
+        wx.hideLoading();
+        console.log(res.data.data);
+
+        me.setData({
+          stuT: res.data.data[0],
+          stuF: res.data.data[1]
+        });
+
+      }
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
+  toStuT:function(e){
+    var index = e.currentTarget.dataset.index;
+    wx.navigateTo({
+      //(待修改)传值进入学生详情页面
+      url: '../../member/member-intro/member-intro?studentInfo=' + JSON.stringify(this.data.stuT[index]),
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  toStuF: function (e) {
+    var index = e.currentTarget.dataset.index;
+    wx.navigateTo({
+      //(待修改)传值进入学生详情页面
+      url: '../../member/member-intro/member-intro?studentInfo=' + JSON.stringify(this.data.stuF[index]),
+    })
   }
+
+  
+
 })

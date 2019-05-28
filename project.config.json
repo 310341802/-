@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.4.2",
 	"appid": "wxc81cca723c86cbb2",
-	"projectname": "%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0",
+	"projectname": "%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -96,11 +96,10 @@
 					"query": ""
 				},
 				{
-					"id": 9,
+					"id": -1,
 					"name": "search",
 					"pathName": "pages/index/search/search",
-					"query": "",
-					"scene": null
+					"query": ""
 				},
 				{
 					"id": -1,
@@ -110,66 +109,29 @@
 				},
 				{
 					"id": -1,
-					"name": "join",
-					"pathName": "pages/join/join",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "tabbar",
-					"pathName": "pages/tabbar/tabbar",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "activity",
-					"pathName": "pages/course/component/activity/activity",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "member",
-					"pathName": "pages/course/component/member/member",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "detail",
-					"pathName": "pages/course/component/detail/detail",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "question",
-					"pathName": "pages/course/component/question/question",
+					"name": "xsearch",
+					"pathName": "pages/course/search/search",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "tabbar_t",
-					"pathName": "pages/tabbar_t/tabbar_t",
+					"name": "zsearch",
+					"pathName": "pages/searchCourse/searchCourse",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": 18,
-					"name": "hw_create",
-					"pathName": "pages/course/component_t/homework/hw_create/hw_create",
-					"query": "name=作业",
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "hw_show",
-					"pathName": "pages/course/component_t/homework/hw_show/hw_show",
-					"query": "name=2019-5-11",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "exam",
-					"pathName": "pages/course/component/question/exam/exam",
+					"name": "about",
+					"pathName": "pages/my/set/about/about",
 					"scene": null
 				}
 			]

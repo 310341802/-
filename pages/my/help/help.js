@@ -11,9 +11,6 @@ Page({
       },
       {
         desc: "怎么创建课程"
-      },
-      {
-        desc: "无法进入课程/找不到我的课程?"
       }
     ]
   },
@@ -24,7 +21,11 @@ Page({
   onLoad: function (options) {
 
   },
-
+  toHelp:function(e){
+    wx.navigateTo({
+      url: '/pages/my/help/help_detail/help_detail?index=' + e.currentTarget.dataset.set + '&desc=' + this.data.help[e.currentTarget.dataset.set].desc,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

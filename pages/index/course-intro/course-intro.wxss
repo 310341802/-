@@ -35,11 +35,12 @@ page{
 .head-intro .head-con .join{
   float: right;
   color: white;
+  
   background: #24dd82;
-  padding: 15rpx 45rpx;
+  padding: 15rpx 35rpx;
   border-radius: 35rpx;
   box-shadow: 0 0 10rpx #ddd;
-  margin-top: -75rpx;
+  margin-top: -60rpx;
 }
 .head-intro .head-con .join:active{
    background: #178d52;
@@ -83,6 +84,7 @@ page{
 .main .main-img image{
   width: 150rpx;
   height: 150rpx;
+  border-radius: 50%;
 }
 .main .main-intro{
   

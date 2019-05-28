@@ -1,76 +1,86 @@
+let app = getApp()
 Component({
   data: {
-    taskq:[
-      {
-        title: "2.1测试",
-        state: 0
-      },
-      {
-        title: "4.11实验报告回顾",
-        state: 1,
-        score:66
-      },
-      {
-        title: "3.1测试",
-        state: 1,
-        score: 33
-      }
-    ]
+    taskq: []
   },
-  methods:{
-    onLoad: function (options) {
-    },
+  attached: function(e) {
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-    },
+  
+    var me = this;
+    console.log("exam");
+    var info = wx.getStorageSync("userInfo");
+    var courseId = info.courseId;
+    var userInfo = wx.getStorageSync("userInfo");
+    var userId = userInfo.userId;
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-    },
+    //根据课程id还有用id查询所有task
+    wx.request({
+      url: app.serverurl +'/coursetask/querytaskbycourseidanduserid?userId=' + userId + '&courseId=' + courseId,
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-    },
+      method: "POST",
+      success: function(res) {
+        var taskinfolist = res.data.data.data;
+        console.log(taskinfolist);
+        me.setData({
+          taskq: taskinfolist
+        });
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-    },
+      }
+    })
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-    },
+  },
+  methods: {
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-    },
-    toExams: function () {
+    toExams: function(e) {
+      var arrindex = e.currentTarget.dataset.index;
+      var info = this.data.taskq[arrindex];
+      var taskinfo = JSON.stringify(info);
+console.log(info);
+      if (info.usertaskstatus==0)
+      {
       wx.navigateTo({
-        url: '/pages/course/component/question/exam/exam',
+        url: '/pages/course/component/question/exam/exam?taskinfo=' + taskinfo,
       })
+      }
+      else
+      {
+        wx.navigateTo({
+          url: '/pages/course/component/question/phw_overview/phw_overview?taskinfo=' + taskinfo,
+        })
+      }
     }
   },
-  properitys:{
+  properitys: {
 
+  },
+  pageLifetimes: {
+    show() {
+
+      //页面被展示重新调用attched的方法
+      var me = this;
+      var info = app.courseInfo;
+      var courseId = info.courseId;
+      var userinfo = wx.getStorageSync("userInfo");
+      var userId =userinfo.userId;
+      //根据课程id还有用id查询所有task
+      wx.request({
+        url: app.serverurl + '/coursetask/querytaskbycourseidanduserid?userId=' + userId + '&courseId=' + courseId,
+
+        method: "POST",
+        success: function(res) {
+          var taskinfolist = res.data.data.data;
+          me.setData({
+            taskq: taskinfolist
+          });
+
+        }
+      })
+
+    },
+    hide() {
+      // 页面被隐藏
+    }
   }
-    
-  
+
+
 })

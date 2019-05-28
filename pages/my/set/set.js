@@ -11,6 +11,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  toAbout:function(){
+    wx.navigateTo({
+      url: '/pages/my/set/about/about',
+    })
+  },
   onLoad: function (options) {
 
   },

@@ -2,8 +2,9 @@ let app = getApp()
 
 Page({
   data: {
-    currentTab: 0,
+    currentTab: 3,
     innerText: "123",
+    courseInfo:{},
     items: [
       {
         "iconPath": "../../img/question.png",
@@ -38,9 +39,8 @@ Page({
     }
   },
   onLoad: function (option) {
-
-  },
-  onShow:function(e){
-    //console.log(123)
+    wx.setNavigationBarTitle({
+      title: app.getGlobalMyCourseInfo().courseName,
+    })
   }
 })

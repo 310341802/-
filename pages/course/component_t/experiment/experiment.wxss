@@ -56,8 +56,9 @@ page{
 .engagement{
   color:#999;
 }
-.null{
-  font-weight: lighter;
-  text-align: center;
-  margin-top: -100rpx;
+.tip{
+  padding: 5%;
+  color: #999;
+  margin-top: -150rpx;
+  margin-bottom: 60rpx;
 }

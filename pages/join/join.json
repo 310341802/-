@@ -1,6 +1,5 @@
 {
-  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#efefef",
   "navigationBarTitleText": "加入课程",
-
-  "backgroundColor": "#efefef"
+  "navigationBarTextStyle": "black"
 }

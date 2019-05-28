@@ -1,81 +1,60 @@
-
+const app = getApp()
 Component({
   data: {
-    member: [{
-      name: "许伟杰",
-      num: "1614080902436",
-      degree: 0
-    },
-    {
-      name: "谢国城",
-      num: "1614080902441",
-      degree: 0
-
-    },
-    {
-      name: "肖展洲",
-      num: "1614080902415",
-      degree: 0
-    }
-    ]
+    totalStudents:0,
+    courseId: "424245",
+    
+    studentList: [],
+    serverUrl: "",
+    studentImg: "../../img/course-s.png"
   },
-  
+
+  attached() {
+    var me = this;
+    me.getAllStudentList();
+ 
+  },
+
   methods: {
-    onLoad: function (options) {
 
+    //获取所有学生信息
+    getAllStudentList: function () {
+      var me = this;
+      var serverUrl = app.serverUrl;
+      var courseId = app.getGlobalMyCourseInfo().courseId;
+      wx.showLoading({
+      title: '请等待，加载中...',
+      });
+
+      wx.request({
+        url: serverUrl + '/student/getAllStudents?courseId=' + courseId ,
+        method: "POST",
+        success: function (res) {
+          wx.hideLoading();
+          wx.hideNavigationBarLoading();
+          wx.stopPullDownRefresh();
+          console.log(res.data);
+
+          var totalStudents = res.data.data.length;
+          var studentList = res.data.data;
+
+          me.setData({
+            studentList: studentList,
+            serverUrl: serverUrl,
+            totalStudents: totalStudents
+          });
+
+        }
+      })
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    toTro: function () {
+    
+    toTro: function (e) { 
+      var me = this;
+      var studentList = me.data.studentList;
+      var id = e.currentTarget.dataset.id;
+      var studentInfo = (JSON.stringify(studentList[id]));
       wx.navigateTo({
-        url: '/pages/course/component_t/member/member-intro/member-intro',
+        url: '/pages/course/component_t/member/member-intro/member-intro?studentInfo=' + studentInfo,
       })
     }
   },

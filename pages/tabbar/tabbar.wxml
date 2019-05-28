@@ -1,15 +1,15 @@
 <!-- 组件显示 -->
 <view hidden="{{currentTab == 0? false: true}}">
-  <component_qu></component_qu>
+  <component_qu courseInfo="{{courseInfo}}"></component_qu>
 </view>
 <view hidden="{{currentTab == 1? false: true}}">
-  <component_ac></component_ac>
+  <component_ac courseInfo="{{courseInfo}}"></component_ac>
 </view>
 <view hidden="{{currentTab == 2? false: true}}">
-  <component_mem></component_mem>
+  <component_mem courseInfo="{{courseInfo}}"></component_mem>
 </view>
 <view hidden="{{currentTab == 3? false: true}}">
-  <component_det></component_det>
+  <component_det courseInfo="{{courseInfo}}"></component_det>
 </view>
 
 

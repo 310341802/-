@@ -1,7 +1,5 @@
 {
+  "navigationBarBackgroundColor": "#efefef",
   "navigationBarTitleText": "意见反馈",
-  
-  "backgroundColor": "#efefef",
-  
   "navigationBarTextStyle": "black"
 }

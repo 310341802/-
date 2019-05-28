@@ -1,15 +1,15 @@
 <view class="blockm">
-  <view class="count">成员总数：{{member.length}}</view>
-  <view class="row" wx:for="{{member}}" catchtap='toTro'>
-    <view class="row-con">
+  <view class="count">成员总数 ({{memberlist.length}})</view>
+  <view class="row" wx:for="{{memberlist}}" catchtap='toTro' data-index='{{index}}'>
+    <view class="row-con" >
       <view class="img">
-        <image src="/img/my.png"></image>
+        <image src="{{item.userImg}}"></image>
       </view>
       <view class="desc">
-        <view class="name">{{item.name}}</view>
-        <view class="num">{{item.num}}</view>
+        <view class="name">{{item.username}}</view>
+        <view class="num">{{item.number}}</view>
       </view>
-      <text class="sign">已签到 {{item.degree}} 次 <text>></text></text>
+      <text class="sign">></text>
     </view>
   </view>
 </view>

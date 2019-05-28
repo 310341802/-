@@ -1,6 +1,6 @@
 <view class="section head">
   <picker bindchange="bindPickerChange" range-key="{{'name'}}" value="{{index}}" range='{{objectArray}}'>
-    <view class="picker">第1题： {{objectArray[index].name}}
+    <view class="picker">第{{questionNumber}}题： {{objectArray[index].name}}
       <text class="trend">﹀</text>
     </view>
   </picker>
@@ -11,7 +11,7 @@
 
   <view class="answer_area">
     <radio-group class="radio-group" bindchange="radioChange">
-      <view class="ans_row" wx:for="{{radioArray}}" wx:for-index="idx" >
+      <view class="ans_row" wx:for="{{radioArray}}" wx:for-index="idx">
         <radio value='{{ans_id[idx]}}' class="item" checked='{{checked}}'>{{ans_id[idx]}}：</radio>
         <input placeholder='答案描述' name="{{ans[idx]}}" value="{{form_info}}"></input>
       </view>
@@ -21,11 +21,11 @@
     <view class="del" catchtap='delitem' id="0">-删除选项</view>
   </view>
   <button form-type='submit'>继续创建下一题</button>
-  <button class="submit">完成创建</button>
+  <button class="submit" form-type='submit' id="finish">完成创建</button>
 </form>
 
 <form bindsubmit="GetMulti" hidden="{{index==1?flase:true}}">
-  <textarea placeholder="问题描述（300字数）" name="textarea" value="{{form_info}}"maxlength="300"></textarea>
+  <textarea placeholder="问题描述（300字数）" name="textarea" value="{{form_info}}" maxlength="300"></textarea>
 
   <view class="answer_area">
     <checkbox-group class="radio-group" bindchange="checkboxChange">
@@ -38,7 +38,7 @@
     <view class="del" catchtap='delitem' id="1">-删除选项</view>
   </view>
   <button form-type='submit'>继续创建下一题</button>
-  <button class="submit">完成创建</button>
+  <button class="submit" form-type='submit' id="finish">完成创建</button> 
 </form>
 <form bindsubmit="GetBlank" hidden="{{index==2?flase:true}}">
   <textarea placeholder="问题描述（300字数）" name="textarea" value="{{form_info}}" maxlength="300"></textarea>
@@ -53,5 +53,6 @@
     <view class="del" catchtap='delitem' id="2">-删除选项</view>
   </view>
   <button form-type='submit'>继续创建下一题</button>
-  <button class="submit">完成创建</button>
+  <button class="submit" form-type='submit' id="finish">完成创建</button>
 </form>
+

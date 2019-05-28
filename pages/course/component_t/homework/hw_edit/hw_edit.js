@@ -20,19 +20,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //var modeEncode  = options.question
+    //var question = decodeURIComponent(modeEncode )
+    var modeEncode = decodeURIComponent(options.question)
+    //console.log(modeEncode)
+    var question = JSON.parse(modeEncode);
+    //console.log(question);
+
     this.setData({
-      question:JSON.parse(options.question),
+      question: question,
       index:options.index
     })
+    console.log(question);
     /*初始化单选多选的选中*/
    
 
-    if (this.data.question.question_type == 0)
+    if (this.data.question.questionType == 1)
     {
       var checked = this.data.checked
-      for (var i = 0; i < this.data.question.answer[0].length; i++) {
-        for (var j = i; j < this.data.question.choice.length; j++) {
-          if (this.data.question.answer[0].charAt(i) == this.data.ans_id[j]) {
+      for (var i = 0; i < this.data.question.answers[0].length; i++) {
+        for (var j = i; j < this.data.question.choices.length; j++) {
+          if (this.data.question.answers[0].charAt(i) == this.data.ans_id[j]) {
             checked[j] = 'true'
           }
           else {
@@ -43,14 +51,15 @@ Page({
       this.setData({
         checked: checked
       })
+  
     }
-    else if (this.data.question.question_type == 1){
+    else if (this.data.question.questionType == 2){
       var checked = this.data.checked
       for (var i = 0; i < checked.length; i++)
         checked[i] = ''
 
-      for (var i = 0; i < this.data.question.answer[0].length; i++) {
-        switch (this.data.question.answer[0].charAt(i)) {
+      for (var i = 0; i < this.data.question.answers[0].length; i++) {
+        switch (this.data.question.answers[0].charAt(i)) {
           case "A": checked[0] = 'true'; break;
           case "B": checked[1] = 'true'; break;
           case "C": checked[2] = 'true'; break;
@@ -64,14 +73,14 @@ Page({
         checked: checked
       })
     }
-    
+    console.log('123',this.data.checked)
   },
   additem: function (e) {
     
     var that = this.data.question
-    if(that.question_type!=2){
+    if(that.questionType!=3){
       //添加选项
-      if (that.choice.length == 7) {
+      if (that.choices.length == 7) {
         wx.showToast({
           title: '最多添加7个选项',
           icon: 'none',
@@ -81,15 +90,15 @@ Page({
       }
       else {
         var temp = that
-        temp.choice.push({})
-        temp.choice[temp.choice.length - 1] = ''
+        temp.choices.push({})
+        temp.choices[temp.choices.length - 1] = ''
         this.setData({
           question: temp
         })
       }
 
     }else{
-      if (that.answer.length == 7) {
+      if (that.answers.length == 7) {
         wx.showToast({
           title: '最多添加7个选项',
           icon: 'none',
@@ -99,8 +108,8 @@ Page({
       }
       else {
         var temp = that
-        temp.answer.push({})
-        temp.answer[temp.answer.length - 1] = ''
+        temp.answers.push({})
+        temp.answers[temp.answers.length - 1] = ''
         this.setData({
           question: temp
         })
@@ -110,15 +119,15 @@ Page({
   },
   radioChange:function(e){
     var que = this.data.question
-    que.answer[0] = e.detail.value
+    que.answers[0] = e.detail.value
     this.setData({
       question: que 
     })
-    if (this.data.question.question_type != 2) {
+    if (this.data.question.questionType != 3) {
       var checked = this.data.checked
-      for (var i = 0; i < this.data.question.answer[0].length; i++) {
-        for (var j = i; j < this.data.question.choice.length; j++) {
-          if (this.data.question.answer[0].charAt(i) == this.data.ans_id[j]) {
+      for (var i = 0; i < this.data.question.answers[0].length; i++) {
+        for (var j = i; j < this.data.question.choices.length; j++) {
+          if (this.data.question.answers[0].charAt(i) == this.data.ans_id[j]) {
             checked[j] = 'true'
           }
           else {
@@ -134,12 +143,12 @@ Page({
   },
   checkboxChange:function(e){
     var que = this.data.question
-    que.answer[0]=''
+    que.answers[0]=''
     var ans = e.detail.value.sort()
    
 
     for(var i = 0;i<ans.length;i++){
-      que.answer[0]+=ans[i]
+      que.answers[0]+=ans[i]
     }
     this.setData({
       question:que
@@ -148,8 +157,8 @@ Page({
     for(var i =0; i<checked.length;i++)
       checked[i]=''
 
-    for (var i = 0; i < this.data.question.answer[0].length; i++){
-      switch (this.data.question.answer[0].charAt(i)){
+    for (var i = 0; i < this.data.question.answers[0].length; i++){
+      switch (this.data.question.answers[0].charAt(i)){
         case "A": checked[0] = 'true';break;
         case "B": checked[1] = 'true'; break;
         case "C": checked[2] = 'true'; break;
@@ -165,30 +174,30 @@ Page({
   },
   updateDesc:function(e){
     var que = this.data.question
-    que.question_desc = e.detail.value
+    que.questionDesc = e.detail.value
     this.setData({
       question:que
     })
   },
   updateChoice:function(e){
     var que = this.data.question
-    que.choice[e.currentTarget.dataset.set] = e.detail.value
+    que.choices[e.currentTarget.dataset.set] = e.detail.value
     this.setData({
       question: que
     })
   },
   updateAns:function(e){
     var que = this.data.question
-    que.answer[e.currentTarget.dataset.set] = e.detail.value
+    que.answers[e.currentTarget.dataset.set] = e.detail.value
     this.setData({
       question: que
     })
   },
   delitem: function (e) {
     var that = this.data.question
-    if (that.question_type != 2) {
+    if (that.questionType != 3) {
       //添加选项
-      if (that.choice.length == 2) {
+      if (that.choices.length == 2) {
         wx.showToast({
           title: '最少保留2个选项',
           icon: 'none',
@@ -199,27 +208,27 @@ Page({
       else {
         var temp = that
         var checked = this.data.checked
-        if (checked[temp.choice.length - 1]=='true')
+        if (checked[temp.choices.length - 1]=='true')
         {
-          if(that.question_type == 0){
-            temp.answer[0] = ""
+          if(that.questionType == 1){
+            temp.answers[0] = ""
           }
           else{
-            temp.answer[0]= temp.answer[0].substr(0, temp.answer[0].length - 1)
+            temp.answers[0]= temp.answers[0].substr(0, temp.answers[0].length - 1)
           }
-          checked[temp.choice.length - 1] = ''
+          checked[temp.choices.length - 1] = ''
           this.setData({
             checked: checked
           })
         }
-        temp.choice.pop({})
+        temp.choices.pop({})
         this.setData({
           question: temp
         })
       }
 
     } else {
-      if (that.answer.length == 1) {
+      if (that.answers.length == 1) {
         wx.showToast({
           title: '最少保留1个选项',
           icon: 'none',
@@ -229,7 +238,7 @@ Page({
       }
       else {
         var temp = that
-        temp.answer.pop({})
+        temp.answers.pop({})
         this.setData({
           question: temp
         })
@@ -240,21 +249,21 @@ Page({
   GetSingle:function(e){
     var that = this.data.question
     var me = this
-    if(that.question_desc == ""){
+    if(that.questionDesc == ""){
       wx.showToast({
         title: '问题描述不可为空',
         icon:"none"
       })
       return false
     }
-    if(that.answer[0]==""){
+    if(that.answers[0]==""){
       wx.showToast({
         title: '请选择正确答案',
         icon: "none"
       })
       return false
     }
-    for(var i =0;i < that.choice.length ;i++){
+    for(var i =0;i < that.choices.length ;i++){
       if(e.detail.value[i]==""){
         wx.showToast({
           title: '请填写第'+(i+1)+"项答案",
@@ -299,14 +308,14 @@ Page({
   GetBlank:function(e){
     var that = this.data.question
     var me = this
-    if (that.question_desc == "") {
+    if (that.questionDesc == "") {
       wx.showToast({
         title: '问题描述不可为空',
         icon: "none"
       })
       return false
     }
-    for (var i = 0; i < that.answer.length; i++) {
+    for (var i = 0; i < that.answers.length; i++) {
       if (e.detail.value[i] == "") {
         wx.showToast({
           title: '请填写第' + (i + 1) + "项答案",

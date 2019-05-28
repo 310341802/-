@@ -1,3 +1,2 @@
-<view class='search'>
-  <input type='text' placeholder='输入课程名'></input>
-</view>
+<!--pages/index/search/search.wxml-->
+<text>pages/index/search/search.wxml</text>

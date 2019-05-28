@@ -17,8 +17,8 @@
       </view>
 
     </radio-group>
-    <view class="add" catchtap='additem' id="0">+添加选项</view>
-    <view class="del" catchtap='delitem' id="0">-删除选项</view>
+    <view class="add" catchtap='additem' id="1">+添加选项</view>
+    <view class="del" catchtap='delitem' id="1">-删除选项</view>
   </view>
   <button form-type='submit' data-set="0">继续创建下一题</button>
   <button class="submit" form-type='submit'  data-set="1">完成创建</button>
@@ -34,8 +34,8 @@
         <input placeholder='答案描述' name="{{idx1}}" value="{{form_info}}"></input>
       </view>
     </checkbox-group>
-    <view class="add" catchtap='additem' id="1">+添加选项</view>
-    <view class="del" catchtap='delitem' id="1">-删除选项</view>
+    <view class="add" catchtap='additem' id="2">+添加选项</view>
+    <view class="del" catchtap='delitem' id="2">-删除选项</view>
   </view>
   <button form-type='submit' data-set="0">继续创建下一题</button>
   <button class="submit" form-type='submit' data-set="1">完成创建</button>
@@ -50,8 +50,8 @@
         <input placeholder='答案描述' name="{{idx2}}" value="{{form_info}}"></input>
       </view>
     </view>
-    <view class="add" catchtap='additem' id="2">+添加选项</view>
-    <view class="del" catchtap='delitem' id="2">-删除选项</view>
+    <view class="add" catchtap='additem' id="3">+添加选项</view>
+    <view class="del" catchtap='delitem' id="3">-删除选项</view>
   </view>
   <button form-type='submit' data-set="0">继续创建下一题</button>
   <button class="submit" form-type='submit' data-set="1">完成创建</button>

@@ -13,7 +13,7 @@ page{
   border-top: 0;
 }
 .block .head-head{
-  display: flex;
+ 
   margin: 0 5%;
   padding: 3% 0;
   border-bottom: thin solid #efefef;
@@ -23,8 +23,14 @@ page{
   height: 75rpx;
   margin-right: 30rpx;
 }
+.block .head-head .desc .title{
+ 
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-all;
+}
 .block .head-head .desc .score,.score{
-  font-weight: lighter;
+  color:#999;
 }
 .block .head-main{
 
@@ -32,7 +38,7 @@ page{
   line-height: 1.5;
 }
 .block .head-main text{
-    font-weight: lighter;
+  color: #999;
 }
 /*Experiment desc*/
 .block .blockTitle{
@@ -41,7 +47,7 @@ page{
 }
 .block .experimentDesc{
   padding: 3% 5% ;
-  font-weight: lighter;
+  color: #999;
 }/*accessory*/
 .arow-con{
   display: flex;
@@ -54,4 +60,18 @@ page{
 }
 .arow:active{
   background: #efefef;
+}
+.arow .title{
+  width: 550rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.null{
+  padding: 3% 5%;
+  color: #999;
+}
+.tip{
+  padding: 0 5%;
+  color: #999;
 }

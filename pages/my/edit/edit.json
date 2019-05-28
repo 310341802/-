@@ -1,6 +1,5 @@
 {
-  "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "我的信息",
   "navigationBarBackgroundColor": "#efefef",
-  "backgroundColor": "#efefef"
+  "navigationBarTitleText": "完善信息",
+  "navigationBarTextStyle": "black"
 }

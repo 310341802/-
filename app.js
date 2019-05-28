@@ -1,39 +1,70 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+  courseInfo: null,
+  courseId: null,
+  serverurl: "http://22159h7z34.iok.la:33867/",
+  serverUrl: "https://795dcd45.ngrok.io",
+  myCourseInfo: {},
+  ifCreate: false,
+  myCourseName:"",
+  myCourseImg:"",
+  ifModify: false,
 
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
+  // "",
+  setGlobalIfCreate: function(ifCreate) {
+    wx.setStorageSync("ifCreate", ifCreate);
+  },
+
+  getGlobalIfCreate: function() {
+    return wx.getStorageSync("ifCreate");
+  },
+
+  setGlobalIfModify: function (ifModify) {
+    wx.setStorageSync("ifModify", ifModify);
+  },
+
+  getGlobalIfModify: function () {
+    return wx.getStorageSync("ifModify");
+  },
+
+  setGlobalMyCourseInfo: function(myCourseInfo) {
+    wx.setStorageSync("myCourseInfo", myCourseInfo);
+  },
+
+  getGlobalMyCourseInfo: function() {
+    return wx.getStorageSync("myCourseInfo");
+  },
+  setGlobalMyCourseName: function (myCourseName) {
+    wx.setStorageSync("myCourseName", myCourseName);
+  },
+
+  getGlobalMyCourseName: function () {
+    return wx.getStorageSync("myCourseName");
+  },
+  setGlobalMyCourseImg: function (myCourseImg) {
+    wx.setStorageSync("myCourseImg", myCourseImg);
+  },
+
+  getGlobalMyCourseImg: function () {
+    return wx.getStorageSync("myCourseImg");
+  },
+
+  setGlobalUserInfo: function(user) {
+    wx.setStorageSync("userInfo", user)
+  },
+  getGlobalUserInfo: function() {
+    return wx.getStorageSync("userInfo")
   },
   globalData: {
-    userInfo: null
+    ifCreate: false,
+    myCourseInfo: {},
+    myCourseName: "",
+    myCourseImg: "",
+    ifModify: false
   }
+
+
+
+
 })

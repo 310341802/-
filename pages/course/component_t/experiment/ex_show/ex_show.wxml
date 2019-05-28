@@ -12,10 +12,10 @@
   </view>
   <view class="head-main">
     <view class="createTime">发布时间：
-      <text>{{exList.createTime}}</text>
+      <text>{{exList.createTimeStr}}</text>
     </view>
     <view class="deadLine">截止时间：
-      <text>{{exList.endTime}}</text>
+      <text>{{exList.endTimeStr}}</text>
     </view>
   </view>
 </view>
@@ -29,11 +29,11 @@
   <view class="blockTitle">附件</view>
   <view class="accessory">
 
-    <view class="arow" wx:for="{{exList.fileName}}" wx:for-index="idx">
+    <view class="arow" wx:for="{{urllist}}" wx:for-index="idx"  data-index='{{idx}}' bindtap='open'>
       <view class="arow-con">
-        <image class="img" src="/img/file/{{type[idx]}}"></image>
+        <image class="img" src="/img/file/{{type[idx]}} "></image>
         <view class="desc">
-          <view class="title wordname">{{item}}</view>
+          <view class="title wordname">{{item.documentname}}</view>
         </view>
       </view>
 
@@ -45,21 +45,21 @@
 <view class="block">
   <view class="blockTitle">提交人数({{stuT.length}}/{{stuT.length+stuF.length}})</view>
 
-  <view class="arow" wx:for="{{stuT}}" wx:for-index="idx" catchtap='toStu'>
+  <view class="arow" wx:for="{{stuT}}" wx:for-index="idx" catchtap='toStuT' data-index='{{idx}}'>
     <view class="arow-con">
-      <image class="img" src="/img/my.png"></image>
+      <image class="img" src="{{item.userImg}}"></image>
       <view class="desc">
-        <view class="title wordname">{{item.userName}}</view>
-        <view class="title engagement_t">{{item.upTime}} 提交</view>
-      </view>
+        <view class="title wordname">{{item.username}}</view>
+        <view class="title engagement_t">{{item.upTimeStr}} 提交</view>
+      </view> 
     </view>
     
   </view>
-  <view class="arow" wx:for="{{stuF}}" wx:for-index="idx" catchtap='toStu'>
+  <view class="arow" wx:for="{{stuF}}" wx:for-index="idx" catchtap='toStuF' data-index='{{idx}}'>
     <view class="arow-con">
-      <image class="img" src="/img/my.png"></image>
+      <image class="img" src="{{item.userImg}}"></image>
       <view class="desc">
-        <view class="title wordname">{{item.userName}}</view>
+        <view class="title wordname">{{item.username}}</view>
         <view class="title engagement_f">未提交</view>
       </view>
     </view>
